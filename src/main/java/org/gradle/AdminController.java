@@ -1,14 +1,11 @@
 package org.gradle;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -17,7 +14,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/getAllDeptType", method = RequestMethod.GET)
 	@ResponseBody
-	public String getAllDeptType(HttpServletResponse response){
+	public Person getAllDeptType(HttpServletResponse response){
 		/*try {
 			response.getWriter().println("ok");
 			response.setStatus(200);
@@ -25,6 +22,17 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
-	return "hello";	
+		Person person = new Person("new person");
+		person.setAge(232);
+	return person;	
+	}
+	
+	@RequestMapping(value = "/getAllDeptType2", method = RequestMethod.POST)
+	@ResponseBody
+	public Person getAllDeptType2(@RequestBody Person person){
+
+		
+		person.setAge(232);
+	return person;	
 	}
 }
