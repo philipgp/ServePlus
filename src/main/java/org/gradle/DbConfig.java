@@ -3,14 +3,14 @@ package org.gradle;
 import java.util.Properties;
 
 import javax.sql.DataSource;
+import javax.transaction.TransactionManager;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 @Configuration
 public class DbConfig {
 	
@@ -18,19 +18,27 @@ public class DbConfig {
 	public DataSource dataSource(){
 		DriverManagerDataSource dmDS = new DriverManagerDataSource();
 		dmDS.setDriverClassName("com.mysql.jdbc.Driver");
-		dmDS.setUrl("jdbc:mysql://127.0.0.1:3306/serveplus");
+		dmDS.setUrl("jdbc:mysql://127.0.0.1:3306/test");
 		dmDS.setUsername("root");
 		dmDS.setPassword("MyNewPass");
 		return dmDS;
 	}
+	
+	@Bean()
+	public HibernateTransactionManager txManager() throws Exception{
+		HibernateTransactionManager hibernateTxManager = new HibernateTransactionManager();
+		hibernateTxManager.setSessionFactory(sessionFactory());
+		return hibernateTxManager;
+	}
 	@Bean
-	public  SessionFactory sessionFactory() throws Exception{
+	public  SessionFactory sessionFactory() throws Exception{ 
 		LocalSessionFactoryBean sessionFactory =  new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
+		sessionFactory.setPackagesToScan("org");
 		Properties hibernateProperties= new Properties();
 		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "auto");
-		//hibernateProperties.setProperty("hibernate.current_session_context_class", "thread");
+		//hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "auto");
+		hibernateProperties.setProperty("hibernate.current_session_context_class", "thread");
 		
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		sessionFactory.setHibernateProperties(hibernateProperties);

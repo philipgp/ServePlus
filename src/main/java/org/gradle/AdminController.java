@@ -2,6 +2,7 @@ package org.gradle;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class AdminController {
 	
+	@Autowired
+	AuthDao authDao;
 
 	@RequestMapping(value = "/getAllDeptType", method = RequestMethod.GET)
 	@ResponseBody
@@ -22,7 +25,9 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
+		
 		Person person = new Person("new person");
+		Test result = authDao.authenticate("", "");
 		person.setAge(232);
 	return person;	
 	}
