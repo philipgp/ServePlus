@@ -9,18 +9,18 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 @Configuration
 public class DbConfig {
 	
 	@Bean()
 	public DataSource dataSource(){
 		DriverManagerDataSource dmDS = new DriverManagerDataSource();
-		dmDS.setDriverClassName("com.mysql.jdbc.Driver");
-		dmDS.setUrl("jdbc:mysql://127.0.0.1:3306/test");
-		dmDS.setUsername("root");
-		dmDS.setPassword("MyNewPass");
+		dmDS.setDriverClassName("org.h2.Driver");
+		dmDS.setUrl("jdbc:h2:tcp://localhost/~/test");
+		dmDS.setUsername("sa");
+		//dmDS.setPassword("test");
 		return dmDS;
 	}
 	
@@ -34,9 +34,9 @@ public class DbConfig {
 	public  SessionFactory sessionFactory() throws Exception{ 
 		LocalSessionFactoryBean sessionFactory =  new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan("org");
+		sessionFactory.setPackagesToScan("com");
 		Properties hibernateProperties= new Properties();
-		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		//hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "auto");
 		hibernateProperties.setProperty("hibernate.current_session_context_class", "thread");
 		
