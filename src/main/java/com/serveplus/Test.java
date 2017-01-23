@@ -1,4 +1,4 @@
-package org.gradle;
+package com.serveplus;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

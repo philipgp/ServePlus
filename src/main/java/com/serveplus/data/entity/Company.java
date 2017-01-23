@@ -1,12 +1,16 @@
 package com.serveplus.data.entity;
 
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +23,13 @@ public class Company {
 	
 	@Column(name = "NAME")
 	private String name;
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "COMPANY_SERVICE",  joinColumns = {
+			@JoinColumn(name = "COMPANY_ID", nullable = false, updatable = false) },
+			inverseJoinColumns = { @JoinColumn(name = "SERVICE_ID",
+					nullable = false, updatable = false) })
+	private Set<Service> services;
 
 
 	public Long getId() {
@@ -44,6 +55,16 @@ public class Company {
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", name=" + name + "]";
+	}
+
+
+	public Set<Service> getServices() {
+		return services;
+	}
+
+
+	public void setServices(Set<Service> services) {
+		this.services = services;
 	}
 
 	

@@ -1,4 +1,4 @@
-package org.gradle;
+package com.serveplus;
 
 import java.util.Properties;
 
