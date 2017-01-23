@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,12 +29,9 @@ public class Service {
 	@JoinColumn(name = "CATEGORY_ID")
 	private Category category;
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "COMPANY_SERVICE",  joinColumns = {
-			@JoinColumn(name = "SERVICE_ID", nullable = false, updatable = false) },
-			inverseJoinColumns = { @JoinColumn(name = "COMPANY_ID",
-					nullable = false, updatable = false) })
-	private Set<Company> companies;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="companyServiceId.service")
+	private Set<CompanyService> companyServices;
 
 	public Long getId() {
 		return id;
@@ -47,13 +45,6 @@ public class Service {
 		return name;
 	}
 
-	public Set<Company> getCompanies() {
-		return companies;
-	}
-
-	public void setCompanies(Set<Company> companies) {
-		this.companies = companies;
-	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -67,10 +58,18 @@ public class Service {
 		this.category = category;
 	}
 
+	public Set<CompanyService> getCompanyServices() {
+		return companyServices;
+	}
+
+	public void setCompanyServices(Set<CompanyService> companyServices) {
+		this.companyServices = companyServices;
+	}
+
 	@Override
 	public String toString() {
 		return "Service [id=" + id + ", name=" + name + ", category="
-				+ category + "]";
+				+ category + ", companyServices=" + companyServices + "]";
 	}
 	
 	
