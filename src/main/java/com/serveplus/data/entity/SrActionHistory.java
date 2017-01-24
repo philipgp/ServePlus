@@ -3,7 +3,11 @@ package com.serveplus.data.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "SR_ACTION_HISTORY ")
 public class SrActionHistory {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
 	
@@ -23,7 +28,8 @@ public class SrActionHistory {
 	private ServiceRequest serviceRequest;
 	
 	@Column(name = "ACTION")
-	private String action;
+	@Enumerated(EnumType.STRING)
+	private SrAction action;
 
 	public Long getId() {
 		return id;
@@ -41,13 +47,15 @@ public class SrActionHistory {
 		this.serviceRequest = serviceRequest;
 	}
 
-	public String getAction() {
+	public SrAction getAction() {
 		return action;
 	}
 
-	public void setAction(String action) {
+	public void setAction(SrAction action) {
 		this.action = action;
 	}
+
+	
 
 	
 }

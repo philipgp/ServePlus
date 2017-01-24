@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,9 +15,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.serveplus.data.dao.EntityBaseEventListener;
+
 @Entity
 @Table(name = "User")
-public class User {
+@EntityListeners(EntityBaseEventListener.class)
+public class User  extends EntityBase{
 	@Id
 	@Column(name = "ID")
 	private Long id;
@@ -32,6 +36,17 @@ public class User {
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="userAddressId.user")
 	private Set<UserAddress> userAddresses;
+	
+	public Address getDefaultAddress(){
+		if(userAddresses!=null){
+			for(UserAddress userAddress:userAddresses){
+				if(Boolean.TRUE.equals(userAddress.getIsDefault()) && userAddress.getUserAddressId()!=null){
+					userAddress.getUserAddressId().getAddress();
+				}
+			}
+		}
+		return null;
+	}
 
 	public Long getId() {
 		return id;

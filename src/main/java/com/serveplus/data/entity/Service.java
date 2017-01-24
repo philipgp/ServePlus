@@ -32,6 +32,10 @@ public class Service {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="companyServiceId.service")
 	private Set<CompanyService> companyServices;
+	
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="serviceContactDetailId.serviceRequest")
+	private Set<ServiceContactDetail> serviceContactDetails;
 
 	public Long getId() {
 		return id;
@@ -64,6 +68,15 @@ public class Service {
 
 	public void setCompanyServices(Set<CompanyService> companyServices) {
 		this.companyServices = companyServices;
+	}
+
+	public Set<ServiceContactDetail> getServiceContactDetails() {
+		return serviceContactDetails;
+	}
+
+	public void setServiceContactDetails(
+			Set<ServiceContactDetail> serviceContactDetails) {
+		this.serviceContactDetails = serviceContactDetails;
 	}
 
 	@Override

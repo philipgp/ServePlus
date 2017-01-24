@@ -10,5 +10,7 @@ public interface UserDao {
 	List<User> getAllUsers();
 
 	public void save(User user);
+	
+	public void saveOrUpdate(User user);
 
 }

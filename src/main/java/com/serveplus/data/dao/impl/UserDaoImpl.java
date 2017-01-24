@@ -44,5 +44,14 @@ public class UserDaoImpl implements UserDao {
 		
 	}
 
+	@Override
+	public void saveOrUpdate(User user) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		 session.saveOrUpdate(user);
+		 tx.commit();
+		
+	}
+
 
 }

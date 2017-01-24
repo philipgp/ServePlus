@@ -36,24 +36,8 @@ public class AdminController {
 	@RequestMapping(value = "/getAllDeptType", method = RequestMethod.GET)
 	@ResponseBody
 	public Person getAllDeptType(HttpServletResponse response){
-		/*try {
-			response.getWriter().println("ok");
-			response.setStatus(200);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 		
-		Person person = new Person("new person");
-		
-		List<User> custoemrs = userDao.getAllUsers();
-		Set<UserAddress> address = custoemrs.get(0).getUserAddresses();
-		for(UserAddress add:address){
-			Address addre = add.getUserAddressId().getAddress();
-			System.out.println(addre);
-		}
-		person.setAge(232);
-	return person;	
+	return null;	
 	}
 	@RequestMapping(value = "/getAllCompanies", method = RequestMethod.GET)
 	@ResponseBody
@@ -91,9 +75,9 @@ public class AdminController {
 
 		
 		User  user1 = new User();
-		user1.setId(2L);
-		user1.setFirstName("new firstname");
-		userDao.save(user1);
+		user1.setId(3L);
+		user1.setFirstName("new1tname");
+		userDao.saveOrUpdate(user1);
 	return null;
 	}
 }

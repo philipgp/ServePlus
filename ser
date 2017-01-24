@@ -1,0 +1,32 @@
+[
+  {
+    "id": -781083751,
+    "name": "getAssignedWorks",
+    "url": "http://localhost:8080/Qlas-1.0/splus/worker/getAssignedWorks",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n    \"workerId\":1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"workerId\":null,\"result\":[{\"regnId\":\"1\",\"location\":null,\"localAddress\":\"first line second line\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"date\":\"2017-01-23 21:00:00\",\"latitude\":12.12,\"longitude\":14.14,\"payment\":null}]}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -770185519,
+    "name": "startWork",
+    "url": "http://localhost:8080/Qlas-1.0/splus/worker/startWork",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n    \"regnId\":1\n}",
+    "contentType": "application/json",
+    "changed": true,
+    "selected": true,
+    "state": "done"
+  }
+]

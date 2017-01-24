@@ -46,6 +46,8 @@ compile group: 'org.springframework', name: 'spring-orm', version: '4.3.5.RELEAS
 compile group: 'com.h2database', name: 'h2', version: '1.4.193'
 // https://mvnrepository.com/artifact/org.apache.derby/derbyclient
 
+// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 
 compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.31'
 } 
