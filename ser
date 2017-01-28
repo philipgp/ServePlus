@@ -5,11 +5,11 @@
     "url": "http://localhost:8080/Qlas-1.0/splus/worker/getAssignedWorks",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n    \"workerId\":1\n}",
+    "content": "{\n    \"workerId\":1\n}\n",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"workerId\":null,\"result\":[{\"regnId\":\"1\",\"location\":null,\"localAddress\":\"first line second line\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"date\":\"2017-01-23 21:00:00\",\"latitude\":12.12,\"longitude\":14.14,\"payment\":null}]}",
+      "content": "{\"message\":\"Success\",\"resultCode\":1,\"result\":[{\"regnId\":\"1\",\"location\":null,\"localAddress\":\"first line second line\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"STARTED\",\"date\":\"2017-01-23 21:00:00\",\"latitude\":12.12,\"longitude\":14.14,\"payment\":null}]}",
       "success": true,
       "status": 200
     },
@@ -23,8 +23,152 @@
     "url": "http://localhost:8080/Qlas-1.0/splus/worker/startWork",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n    \"regnId\":1\n}",
+    "content": "{\n    \"regnId\":1,\n    \"workerId\":1\n}",
     "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"regnId\":1,\"date\":\"2017-01-28 10:48:31\"}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -457532452,
+    "name": "workCompleted",
+    "url": "http://localhost:8080/Qlas-1.0/splus/worker/workCompleted",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n    \"serviceRequestId\":1,\n    \"workerId\":1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"regnId\":1,\"date\":\"2017-01-28 10:59:57\"}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -455860766,
+    "name": "worker getServiceRequestDetail",
+    "url": "http://localhost:8080/Qlas-1.0/splus/worker/getServiceRequestDetail",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n  \"serviceRequestId\": 1,\n  \"workerId\": 1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"workerId\":null,\"serviceRequestId\":null,\"serviceRequest\":{\"regnId\":\"1\",\"location\":null,\"localAddress\":\"first line second line\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"CLOSED\",\"date\":\"2017-01-23 21:00:00\",\"latitude\":12.12,\"longitude\":14.14,\"payment\":null},\"history\":[{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null}]}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -453658033,
+    "name": "workClosed",
+    "url": "http://localhost:8080/Qlas-1.0/splus/worker/workClosed",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n  \"serviceRequestId\": 1,\n  \"workerId\": 1,\n  \"payment\": {\n    \"amount\": 12.21,\n    \"currency\": \"QAR\"\n  }\n}",
+    "contentType": "application/json",
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -448906114,
+    "name": "USER getServices",
+    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getServices",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"services\":[{\"id\":1,\"name\":\"testservice\"}]}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -448064787,
+    "name": "getServiceCompanies",
+    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getCompanies",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n    \"serviceId\":1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"companies\":[{\"companyName\":\"test\",\"companyId\":1}]}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -441550896,
+    "name": "createServiceRequests",
+    "url": "http://localhost:8080/Qlas-1.0/splus/customer/createServiceRequests",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n    \"serviceId\":1,\n    \"companyId\":1,\n     \"userId\":1,\n     \"latitude\":12.234,\n     \"longitude\":25.345,\n     \"localAddress\":{\n     \"firstLine\":\"my firstline\",\n     \"secondLine\":\"my secondline\"\n     }\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceReqeustId\":8}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -438539503,
+    "name": "getServiceRequests",
+    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getServiceRequests",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n    \"userId\":1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceRequests\":[{\"regnId\":\"5\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},{\"regnId\":\"6\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},{\"regnId\":\"7\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},{\"regnId\":\"8\",\"location\":null,\"localAddress\":\"my firstline my secondline\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null}]}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": -437765002,
+    "name": "getServiceRequests-copy",
+    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getServiceRequestDetail",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n    \"userId\":1,\n    \"serviceRequestId\":7\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceRequest\":{\"regnId\":\"7\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},\"history\":[{\"action\":\"REGISTERED\",\"time\":null}]}",
+      "success": true,
+      "status": 200
+    },
     "changed": true,
     "selected": true,
     "state": "done"

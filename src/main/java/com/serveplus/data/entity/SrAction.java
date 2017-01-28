@@ -1,12 +1,16 @@
 package com.serveplus.data.entity;
 
 public enum SrAction {
-	REGISTERED,STARTED;
+	REGISTERED,STARTED,COMPLETED,ASSIGNED;
 	
-	public static SrAction getActionStatus(ServiceRequestStatus from,ServiceRequestStatus to){
+	public static SrAction getActionStatus(ServiceRequestStatus to){
 		if(to==ServiceRequestStatus.REGISTERED){
 			return REGISTERED;
-		}else
+		}else if(to ==ServiceRequestStatus.COMPLETED)
+			return COMPLETED;
+		else if(to ==ServiceRequestStatus.ASSIGNED)
+			return ASSIGNED;
+		else
 			return STARTED;
 	}
 	

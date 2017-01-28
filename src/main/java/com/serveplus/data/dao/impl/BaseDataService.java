@@ -11,12 +11,21 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.GenericTypeResolver;
 
 import com.serveplus.data.dao.ParameterMap;
 public class BaseDataService<T> {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	protected  Class<T> genericType; 
+	
+	protected BaseDataService() {
+		this.genericType = (Class<T>) GenericTypeResolver.resolveTypeArgument(getClass(), BaseDataService.class); // spring function to get the actual class of 'T'
+		
+
+	}
 	
 	public Session getSession(){
 		return sessionFactory.openSession();
@@ -27,6 +36,16 @@ public class BaseDataService<T> {
 				.createQuery(hql).list();
 		session.close();
 		return results;
+	}
+	public List<T> getAll(){
+		List<T> results = getResultList("from "+genericType.getName());
+		return results;
+	}
+	public T findById(Long id){
+		Session session = getSession();
+		T object = (T) session.get( genericType, id);
+		session.close();
+		return object;
 	}
 	public List<T> getResultList(String hql,ParameterMap parameterMap){
 		Session session = getSession();

@@ -10,16 +10,21 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "SERVICE_REQUEST")
 public class ServiceRequest extends EntityBase{
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
 	
@@ -40,9 +45,13 @@ public class ServiceRequest extends EntityBase{
 	@JoinColumn(name = "ASSIGNER_ID")
 	private Assigner assigner;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name = "ADDRESS_ID")
 	private Address address;
+	
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name = "PAYMENT_ID")
+	private Payment payment;
 	
 	@OneToMany(mappedBy="serviceRequest",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<SrActionHistory> actionHistories;
@@ -117,13 +126,22 @@ public class ServiceRequest extends EntityBase{
 	public List<SrActionHistory> getActionHistories() {
 		return actionHistories;
 	}
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
 	public void setActionHistories(List<SrActionHistory> actionHistories) {
 		this.actionHistories = actionHistories;
 	}
 	@Override
 	public String toString() {
-		return "ServiceRequest [id=" + id + ", customer=" + customer
-				+ ", status=" + status + "]";
+		return "ServiceRequest [id=" + id + ", service=" + service
+				+ ", customer=" + customer + ", worker=" + worker
+				+ ", assigner=" + assigner + ", address=" + address
+				+ ", payment=" + payment + ", actionHistories="
+				+ actionHistories + ", status=" + status + "]";
 	}
 
 

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SR_ACTION_HISTORY ")
-public class SrActionHistory {
+public class SrActionHistory extends EntityBase{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")

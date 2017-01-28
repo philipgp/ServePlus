@@ -13,3 +13,9 @@ insert into assigner values (1,1,1)
 insert into worker values (1,1,1)
 insert into contact_detail VALUES (1,'PHONE','1234123')
 INSERT INTO CUSTOMER_CONTACT VALUES (1,1,TRUE,TRUE)
+
+
+
+insert into user( id ,first_name ,middle_name ,last_name ) values(2,'WFirst1','WMiddle1','WLast1')
+insert into worker (id ,user_id ) values(2,2)
+insert into worker_service(worker_id ,service_id ,active ) values(2,1,true)

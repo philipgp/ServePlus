@@ -31,4 +31,13 @@ public class ServiceRequestDaoImpl extends BaseDataService<ServiceRequest> imple
 		return result;
 	}
 
+	@Override
+	public List<ServiceRequest> getServiceRequestsByCustomerId(Long customerId) {
+		String hql = " FROM ServiceRequest serviceRequest where serviceRequest.customer.id=:customerId";
+		ParameterMap parameterMap  = new ParameterMap();
+		parameterMap.add("customerId", customerId);
+		List<ServiceRequest> result = getResultList(hql, parameterMap);
+		return result;
+	}
+
 }

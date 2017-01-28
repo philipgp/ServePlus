@@ -8,7 +8,8 @@ import com.serveplus.data.entity.User;
 public interface CompanyDao {
 	
 	List<Company> getAllCompanies();
-
+	
+	public Company findById(Long id);
 	
 
 }

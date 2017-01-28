@@ -26,8 +26,8 @@ public class Company {
 	private String name;
 	
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="companyServiceId.company")
-	private Set<CompanyService> companyServices;
+	/*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="workerServiceId.company")
+	private Set<WorkerService> workerServices;*/
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="companyAddressId.company")
 	private Set<CompanyAddress> companyAddresses;
@@ -52,22 +52,9 @@ public class Company {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Company [id=" + id + ", name=" + name + ", companyServices="
-				+ companyServices + ", companyAddresses=" + companyAddresses
-				+ "]";
-	}
 
 
-	public Set<CompanyService> getCompanyServices() {
-		return companyServices;
-	}
 
-
-	public void setCompanyServices(Set<CompanyService> companyServices) {
-		this.companyServices = companyServices;
-	}
 
 
 	public Set<CompanyAddress> getCompanyAddresses() {

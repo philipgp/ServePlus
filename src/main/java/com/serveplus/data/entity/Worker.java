@@ -1,11 +1,15 @@
 package com.serveplus.data.entity;
 
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,6 +27,9 @@ public class Worker {
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "COMPANY_ID")
 	private Company company;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="workerServiceId.worker")
+	private Set<WorkerService> workerServices;
 
 	public Long getId() {
 		return id;
@@ -48,10 +55,18 @@ public class Worker {
 		this.company = company;
 	}
 
+	public Set<WorkerService> getWorkerServices() {
+		return workerServices;
+	}
+
+	public void setWorkerServices(Set<WorkerService> workerServices) {
+		this.workerServices = workerServices;
+	}
+
 	@Override
 	public String toString() {
-		return "Assigner [id=" + id + ", user=" + user + ", company=" + company
-				+ "]";
+		return "Worker [id=" + id + ", user=" + user + ", company=" + company
+				+ ", workerServices=" + workerServices + "]";
 	}
 
 	

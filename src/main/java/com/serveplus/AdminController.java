@@ -18,7 +18,7 @@ import com.serveplus.data.entity.Address;
 import com.serveplus.data.entity.Category;
 import com.serveplus.data.entity.Company;
 import com.serveplus.data.entity.CompanyAddress;
-import com.serveplus.data.entity.CompanyService;
+import com.serveplus.data.entity.WorkerService;
 import com.serveplus.data.entity.Customer;
 import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.User;
@@ -52,12 +52,12 @@ public class AdminController {
 		
 		
 		List<Company> custoemrs = companyDao.getAllCompanies();
-		Set<CompanyService> services = custoemrs.get(0).getCompanyServices();
+		//Set<WorkerService> services = custoemrs.get(0).getCompanyServices();
 		
-		for(CompanyService service:services){
-			Service cat = service.getCompanyServiceId().getService();
-			System.out.println(cat);
-		}
+		/*for(WorkerService service:services){
+			//Service cat = service.getCompanyServiceId().getService();
+			//System.out.println(cat);
+		}*/
 		
 		Set<CompanyAddress> compadd = custoemrs.get(0).getCompanyAddresses();
 				

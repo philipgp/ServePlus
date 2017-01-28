@@ -15,19 +15,16 @@ import com.serveplus.data.entity.Customer;
 import com.serveplus.data.entity.User;
 
 @Component
-public class CompanyDaoImpl implements CompanyDao {
+public class CompanyDaoImpl extends BaseDataService<Company> implements CompanyDao {
 	
-	@Autowired
-	private SessionFactory sessionFactory;
+	
 
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	
 
 	@Override
 	public List<Company> getAllCompanies() {
 		String hql = " FROM Company ";
-		Session session = sessionFactory.openSession();
+		Session session = getSession();
 		List results = session
 				.createQuery(hql).list();
 		return results;
