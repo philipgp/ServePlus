@@ -2,7 +2,9 @@ package com.serveplus.web.response.customer;
 
 import java.util.List;
 
-public class GetCustomerServiceRequestResponse extends UserBaseResponse{
+import com.serveplus.web.request.customer.CustomerServiceRequestVO;
+
+public class GetCustomerServiceRequestResponse extends CustomerResponseBase{
 	private List<CustomerServiceRequestVO> serviceRequests;
 
 	public List<CustomerServiceRequestVO> getServiceRequests() {

@@ -1,7 +1,7 @@
 package com.serveplus.web.response.mapper.customer;
 
 import com.serveplus.data.entity.ServiceRequest;
-import com.serveplus.web.response.customer.CustomerServiceRequestVO;
+import com.serveplus.web.request.customer.CustomerServiceRequestVO;
 import com.serveplus.web.response.mapper.Mapper;
 import com.serveplus.web.response.mapper.worker.ServiceReqeuestBaseMapper;
 import com.serveplus.web.response.mapper.worker.ServiceRequestToWorkMapper;

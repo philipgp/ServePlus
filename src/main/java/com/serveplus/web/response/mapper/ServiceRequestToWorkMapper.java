@@ -31,7 +31,7 @@ public class ServiceRequestToWorkMapper implements Mapper<ServiceRequest,WorkVO>
 		WorkVO workVO = new WorkVO();
 		workVO.setRegnId(String.valueOf(serviceRequest.getId()));
 		Customer customer = serviceRequest.getCustomer();
-		Service service = serviceRequest.getService();
+		Service service = serviceRequest.getCompanyService().getService();
 		if(service!=null){
 			workVO.setType(service.getName());
 			workVO.setTypeId(String.valueOf(service.getId()));

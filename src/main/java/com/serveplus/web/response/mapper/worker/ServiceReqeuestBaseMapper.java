@@ -23,7 +23,8 @@ public class ServiceReqeuestBaseMapper {
 	protected void map(ServiceRequest serviceRequest,ServiceRequestVO workVO){
 		workVO.setRegnId(String.valueOf(serviceRequest.getId()));
 		Customer customer = serviceRequest.getCustomer();
-		Service service = serviceRequest.getService();
+		
+		Service service = serviceRequest.getCompanyService().getService();
 		if(service!=null){
 			workVO.setType(service.getName());
 			workVO.setTypeId(String.valueOf(service.getId()));
@@ -51,6 +52,7 @@ public class ServiceReqeuestBaseMapper {
 			if(phoneContact!=null){
 				workVO.setPhoneNo(phoneContact.getValue());	
 			}
+			workVO.setRequest(serviceRequest.getRequest());
 			Address serviceAddress = serviceRequest.getAddress();
 			if(serviceAddress!=null){
 				workVO.setLocalAddress(getAddressString(serviceAddress));

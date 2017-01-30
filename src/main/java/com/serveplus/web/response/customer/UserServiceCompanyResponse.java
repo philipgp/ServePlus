@@ -2,7 +2,7 @@ package com.serveplus.web.response.customer;
 
 import java.util.Set;
 
-public class UserServiceCompanyResponse extends UserBaseResponse{
+public class UserServiceCompanyResponse extends CustomerResponseBase{
 	private Set<ServiceCompanyVO> companies;
 
 	public Set<ServiceCompanyVO> getCompanies() {

@@ -7,10 +7,11 @@ import com.serveplus.DateFormats;
 
 public class ServiceRequestVO {
 	private String regnId,location,localAddress,image;
-	private String userName,fullName,phoneNo,dept,type,typeId,preferedTime,comment;
+	private String userName,fullName,phoneNo,dept,type,typeId,preferedTime;
 	private String status;
 	@JsonFormat(pattern = DateFormats.yyyyMMddHHmmss)
 	private Date date;
+	private String request;
 	private Float latitude,longitude,payment;
 	
 	
@@ -93,12 +94,13 @@ public class ServiceRequestVO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getComment() {
-		return comment;
+	public String getRequest() {
+		return request;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setRequest(String request) {
+		this.request = request;
 	}
+	
 	public Float getLatitude() {
 		return latitude;
 	}
@@ -109,17 +111,7 @@ public class ServiceRequestVO {
 		return longitude;
 	}
 	
-	@Override
-	public String toString() {
-		return "WorkVO [regnId=" + regnId + ", location=" + location
-				+ ", localAddress=" + localAddress + ", image=" + image
-				+ ", userName=" + userName + ", fullName=" + fullName
-				+ ", phoneNo=" + phoneNo + ", dept=" + dept + ", type=" + type
-				+ ", typeId=" + typeId + ", preferedTime=" + preferedTime
-				+ ", comment=" + comment + ", status=" + status + ", date="
-				+ date + ", latitude=" + latitude + ", longitude=" + longitude
-				+ ", payment=" + payment + "]";
-	}
+	
 	public void setLongitude(Float longitude) {
 		this.longitude = longitude;
 	}
@@ -128,5 +120,23 @@ public class ServiceRequestVO {
 	}
 	public void setPayment(Float payment) {
 		this.payment = payment;
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("ServiceRequestVO [regnId=").append(regnId)
+				.append(", location=").append(location)
+				.append(", localAddress=").append(localAddress)
+				.append(", image=").append(image).append(", userName=")
+				.append(userName).append(", fullName=").append(fullName)
+				.append(", phoneNo=").append(phoneNo).append(", dept=")
+				.append(dept).append(", type=").append(type)
+				.append(", typeId=").append(typeId).append(", preferedTime=")
+				.append(preferedTime).append(", status=").append(status)
+				.append(", date=").append(date).append(", request=")
+				.append(request).append(", latitude=").append(latitude)
+				.append(", longitude=").append(longitude).append(", payment=")
+				.append(payment).append("]");
+		return builder.toString();
 	}
 }

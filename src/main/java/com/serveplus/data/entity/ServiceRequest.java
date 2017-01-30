@@ -30,8 +30,8 @@ public class ServiceRequest extends EntityBase{
 	
 
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "SERVICE_ID")
-	private Service service;
+	@JoinColumn(name = "COMPANY_SERVICE_ID")
+	private CompanyService companyService;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "CUSTOMER_ID")
@@ -53,8 +53,18 @@ public class ServiceRequest extends EntityBase{
 	@JoinColumn(name = "PAYMENT_ID")
 	private Payment payment;
 	
+	
+	
+	@Column(name = "REQUEST")
+	private String request;
+	
+	@Column(name = "RATING")
+	private Integer rating;
+	
 	@OneToMany(mappedBy="serviceRequest",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<SrActionHistory> actionHistories;
+	
+	
 	
 	@Column(name = "STATUS")
 	@Enumerated(EnumType.STRING)
@@ -107,14 +117,15 @@ public class ServiceRequest extends EntityBase{
 		this.address = address;
 	}
 
-	public Service getService() {
-		return service;
-	}
 
-	public void setService(Service service) {
-		this.service = service;
-	}
 
+
+	public CompanyService getCompanyService() {
+		return companyService;
+	}
+	public void setCompanyService(CompanyService companyService) {
+		this.companyService = companyService;
+	}
 	public ServiceRequestStatus getStatus() {
 		return status;
 	}
@@ -132,16 +143,35 @@ public class ServiceRequest extends EntityBase{
 	public void setPayment(Payment payment) {
 		this.payment = payment;
 	}
+	public String getRequest() {
+		return request;
+	}
+	public void setRequest(String request) {
+		this.request = request;
+	}
 	public void setActionHistories(List<SrActionHistory> actionHistories) {
 		this.actionHistories = actionHistories;
 	}
+	
+	public Integer getRating() {
+		return rating;
+	}
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	
 	@Override
 	public String toString() {
-		return "ServiceRequest [id=" + id + ", service=" + service
-				+ ", customer=" + customer + ", worker=" + worker
-				+ ", assigner=" + assigner + ", address=" + address
-				+ ", payment=" + payment + ", actionHistories="
-				+ actionHistories + ", status=" + status + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("ServiceRequest [id=").append(id)
+				.append(", companyService=").append(companyService)
+				.append(", customer=").append(customer).append(", worker=")
+				.append(worker).append(", assigner=").append(assigner)
+				.append(", address=").append(address).append(", payment=")
+				.append(payment).append(", request=").append(request)
+				.append(", actionHistories=").append(actionHistories)
+				.append(", status=").append(status).append("]");
+		return builder.toString();
 	}
 
 

@@ -13,25 +13,17 @@ public class CsAssignerId implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 5605378140073686012L;
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Company company;
-	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Service service;
+	private CompanyService companyService;
+	
+	
+	
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Assigner assigner;
 
 
-	public Company getCompany() {
-		return company;
-	}
-
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
 
 
 	
@@ -47,15 +39,17 @@ public class CsAssignerId implements Serializable {
 	}
 
 
-	public Service getService() {
-		return service;
+	public CompanyService getCompanyService() {
+		return companyService;
 	}
 
 
-	public void setService(Service service) {
-		this.service = service;
+	public void setCompanyService(CompanyService companyService) {
+		this.companyService = companyService;
 	}
 
+
+	
 
 	
 	

@@ -8,6 +8,7 @@ import com.serveplus.data.dao.CsAssignerDao;
 import com.serveplus.data.dao.ParameterMap;
 import com.serveplus.data.entity.Assigner;
 import com.serveplus.data.entity.Company;
+import com.serveplus.data.entity.CompanyService;
 import com.serveplus.data.entity.CsAssigner;
 import com.serveplus.data.entity.Service;
 
@@ -15,11 +16,12 @@ import com.serveplus.data.entity.Service;
 public class CsAssignerDaoImpl extends BaseDataService<CsAssigner> implements CsAssignerDao{
 
 	@Override
-	public List<CsAssigner> findBy(Company company, Service service) {
-		String hql = "from CsAssigner where csAssignerId.company=:company and csAssignerId.service = :service";
+	public List<CsAssigner> findBy(CompanyService companyService) {
+		String hql = "from CsAssigner where csAssignerId.companyService=:companyService ";
+			
 		ParameterMap parameterMap = new ParameterMap();
-		parameterMap.add("company", company);
-		parameterMap.add("service", service);
+		parameterMap.add("companyService", companyService);
+		//parameterMap.add("service", service);
 		List<CsAssigner> result = getResultList(hql, parameterMap);
 		return result;
 	}

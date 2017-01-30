@@ -1,4 +1,4 @@
-package com.serveplus.web.response.customer;
+package com.serveplus.web.request.customer;
 
 import com.serveplus.web.response.ServiceRequestVO;
 

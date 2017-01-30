@@ -11,10 +11,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CS_ASSIGNER")
 @AssociationOverrides({
-    @AssociationOverride(name = "csAssignerId.company",
-        joinColumns = @JoinColumn(name = "COMPANY_ID")),
-        @AssociationOverride(name = "csAssignerId.service",
-        joinColumns = @JoinColumn(name = "SERVICE_ID")),
+    @AssociationOverride(name = "csAssignerId.companyService",
+        joinColumns = @JoinColumn(name = "CS_ID")),
     @AssociationOverride(name = "csAssignerId.assigner",
         joinColumns = @JoinColumn(name = "ASSIGNER_ID")) })
 public class CsAssigner {

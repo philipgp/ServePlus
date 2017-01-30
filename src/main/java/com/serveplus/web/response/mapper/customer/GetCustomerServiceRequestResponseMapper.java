@@ -3,7 +3,7 @@ package com.serveplus.web.response.mapper.customer;
 import java.util.List;
 
 import com.serveplus.data.entity.ServiceRequest;
-import com.serveplus.web.response.customer.CustomerServiceRequestVO;
+import com.serveplus.web.request.customer.CustomerServiceRequestVO;
 import com.serveplus.web.response.customer.GetCustomerServiceRequestResponse;
 import com.serveplus.web.response.mapper.ListToListMapper;
 import com.serveplus.web.response.mapper.Mapper;

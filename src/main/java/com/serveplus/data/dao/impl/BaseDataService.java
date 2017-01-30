@@ -88,4 +88,9 @@ public class BaseDataService<T> {
 		tx.commit();
 		session.close();
 	}
+	public void saveAll(List<T> objects){
+		for(T object:objects){
+			save(object);
+		}
+	}
 }

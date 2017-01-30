@@ -14,19 +14,23 @@ public class AddressVOMapper implements Mapper<AddressVO,Address>{
 		this.longitude = longitude;
 	}
 
+	protected void setValues(Address address,AddressVO source){
+			if(address!=null && (source!=null || latitude!=null || longitude!=null)){
+				address.setFirstLine(source.getFirstLine());
+				address.setSecondLine(source.getSecondLine());
+				Location location = new Location();
+				address.setLocation(location);
+				location.setLatitude(String.valueOf(latitude));
+				location.setLongitude(String.valueOf(longitude));
+			}
+	
+	}
 	@Override
 	public Address mapFrom(AddressVO source) {
-		
 		Address address = null;
-		if(source!=null || latitude!=null || longitude!=null){
 			address = new Address();
-			address.setFirstLine(source.getFirstLine());
-			address.setSecondLine(source.getSecondLine());
-			Location location = new Location();
-			address.setLocation(location);
-			location.setLatitude(String.valueOf(latitude));
-			location.setLongitude(String.valueOf(longitude));
-		}
+			setValues(address,source);
+		
 		return address;
 	}
 	

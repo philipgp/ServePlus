@@ -2,7 +2,7 @@ package com.serveplus.web.response.customer;
 
 import com.serveplus.web.response.ServePlusResponse;
 
-public class UserBaseResponse extends ServePlusResponse{
+public class CustomerResponseBase extends ServePlusResponse{
 	private Long userId;
 
 	public Long getUserId() {

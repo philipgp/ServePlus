@@ -14,6 +14,10 @@ import com.serveplus.service.WorkerService;
 import com.serveplus.web.request.customer.CreateServiceRequest;
 import com.serveplus.web.request.customer.CustomerServiceRequestDetailRequest;
 import com.serveplus.web.request.customer.GetCustomerServiceRequest;
+import com.serveplus.web.request.customer.GetFeedbackRequest;
+import com.serveplus.web.request.customer.RatingFeedbackRequest;
+import com.serveplus.web.request.customer.RatingQuestionRequest;
+import com.serveplus.web.request.customer.UpdateServiceRequest;
 import com.serveplus.web.request.customer.UserServiceCompanyRequest;
 import com.serveplus.web.request.customer.UserServiceRequest;
 import com.serveplus.web.request.worker.GetAssignedWorkRequest;
@@ -23,6 +27,10 @@ import com.serveplus.web.request.worker.WorkCompletedRequest;
 import com.serveplus.web.request.worker.WorkerServiceRequestDetailRequest;
 import com.serveplus.web.response.customer.CustomerServiceRequestDetailResponse;
 import com.serveplus.web.response.customer.GetCustomerServiceRequestResponse;
+import com.serveplus.web.response.customer.GetFeedbackResponse;
+import com.serveplus.web.response.customer.RatingFeedbackResponse;
+import com.serveplus.web.response.customer.RatingQuestionResponse;
+import com.serveplus.web.response.customer.UpdateServiceRequestResponse;
 import com.serveplus.web.response.customer.UserServiceCompanyResponse;
 import com.serveplus.web.response.customer.UserServiceResponse;
 import com.serveplus.web.response.mapper.CreateServiceRequestResponse;
@@ -54,9 +62,9 @@ public class CustomerController {
 		return userService.getCompanies(request);
 	}
 	
-	@RequestMapping(value = "/createServiceRequests", method = RequestMethod.POST)
+	@RequestMapping(value = "/createServiceRequest", method = RequestMethod.POST)
 	@ResponseBody
-	public CreateServiceRequestResponse createServiceRequests(@RequestBody CreateServiceRequest request){
+	public CreateServiceRequestResponse createServiceRequest(@RequestBody CreateServiceRequest request){
 		return userService.createServiceRequest(request);
 	}
 	
@@ -72,6 +80,29 @@ public class CustomerController {
 		return userService.getServiceRequestDetail(request);
 	}
 	
+	@RequestMapping(value = "/updateServiceRequest", method = RequestMethod.POST)
+	@ResponseBody
+	public UpdateServiceRequestResponse updateServiceRequest(@RequestBody UpdateServiceRequest request){
+		return userService.updateServiceRequest(request);
+	}
+	
+	@RequestMapping(value = "/getRatingQuestions", method = RequestMethod.POST)
+	@ResponseBody
+	public RatingQuestionResponse updateServiceRequest(@RequestBody RatingQuestionRequest request){
+		return userService.getRatingQuestions(request);
+	}
+	
+	@RequestMapping(value = "/setFeedback", method = RequestMethod.POST)
+	@ResponseBody
+	public RatingFeedbackResponse setFeedback(@RequestBody RatingFeedbackRequest request){
+		return userService.setFeedback(request);
+	}
+	
+	@RequestMapping(value = "/getFeedback", method = RequestMethod.POST)
+	@ResponseBody
+	public GetFeedbackResponse getFeedback(@RequestBody GetFeedbackRequest request){
+		return userService.getFeedbacks(request);
+	}
 	
 	
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import com.serveplus.web.response.ServiceRequestVO;
 import com.serveplus.web.response.SrActionHistoryVO;
 
-public class CustomerServiceRequestDetailResponse extends UserBaseResponse{
+public class CustomerServiceRequestDetailResponse extends CustomerResponseBase{
 	ServiceRequestVO serviceRequest;
 	private List<SrActionHistoryVO> history;
 	public ServiceRequestVO getServiceRequest() {

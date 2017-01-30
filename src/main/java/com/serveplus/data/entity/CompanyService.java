@@ -4,21 +4,33 @@ import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "COMPANY_SERVICE")
-@AssociationOverrides({
+/*@AssociationOverrides({
     @AssociationOverride(name = "companyServiceId.company",
         joinColumns = @JoinColumn(name = "COMPANY_ID")),
     @AssociationOverride(name = "companyServiceId.service",
-        joinColumns = @JoinColumn(name = "SERVICE_ID")) })
+        joinColumns = @JoinColumn(name = "SERVICE_ID")) })*/
 public class CompanyService {
 		
 	@Id
-	private CompanyServiceId companyServiceId;
+	@Column(name = "ID")
+	private Long id;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "COMPANY_ID")
+	private Company company;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "SERVICE_ID")
+	private Service service;
 	
 	@Column(name = "DEFAULT")
 	private Boolean isDefault;
@@ -43,13 +55,31 @@ public class CompanyService {
 		this.active = active;
 	}
 
-	public CompanyServiceId getCompanyServiceId() {
-		return companyServiceId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCompanyServiceId(CompanyServiceId companyServiceId) {
-		this.companyServiceId = companyServiceId;
+	public void setId(Long id) {
+		this.id = id;
 	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public Service getService() {
+		return service;
+	}
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+	
 
 	
 }
