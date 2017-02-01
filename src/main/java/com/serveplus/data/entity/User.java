@@ -1,6 +1,7 @@
 package com.serveplus.data.entity;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -22,6 +25,7 @@ import com.serveplus.data.dao.EntityBaseEventListener;
 @EntityListeners(EntityBaseEventListener.class)
 public class User  extends EntityBase{
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
 	
@@ -34,10 +38,13 @@ public class User  extends EntityBase{
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="userAddressId.user")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="user")
 	private Set<UserAddress> userAddresses;
 	
-	public Address getDefaultAddress(){
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="user")
+	private Set<UserContact> userContactDetails = new HashSet<UserContact>(0);
+	
+	/*public Address getDefaultAddress(){
 		if(userAddresses!=null){
 			for(UserAddress userAddress:userAddresses){
 				if(Boolean.TRUE.equals(userAddress.getIsDefault()) && userAddress.getUserAddressId()!=null){
@@ -46,7 +53,7 @@ public class User  extends EntityBase{
 			}
 		}
 		return null;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
@@ -86,6 +93,14 @@ public class User  extends EntityBase{
 
 	public void setUserAddresses(Set<UserAddress> userAddresses) {
 		this.userAddresses = userAddresses;
+	}
+
+	public Set<UserContact> getUserContactDetails() {
+		return userContactDetails;
+	}
+
+	public void setUserContactDetails(Set<UserContact> userContactDetails) {
+		this.userContactDetails = userContactDetails;
 	}
 
 	@Override

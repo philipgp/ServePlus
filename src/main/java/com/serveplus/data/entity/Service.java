@@ -34,8 +34,8 @@ public class Service {
 	private Set<WorkerService> workerServices;
 	
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="serviceContactDetailId.serviceRequest")
-	private Set<ServiceContactDetail> serviceContactDetails;
+/*	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="serviceRequest")
+	private Set<ServiceContactDetail> serviceContactDetails;*/
 
 	public Long getId() {
 		return id;
@@ -64,14 +64,14 @@ public class Service {
 
 	
 
-	public Set<ServiceContactDetail> getServiceContactDetails() {
+	/*public Set<ServiceContactDetail> getServiceContactDetails() {
 		return serviceContactDetails;
 	}
 
 	public void setServiceContactDetails(
 			Set<ServiceContactDetail> serviceContactDetails) {
 		this.serviceContactDetails = serviceContactDetails;
-	}
+	}*/
 
 	public Set<WorkerService> getWorkerServices() {
 		return workerServices;
@@ -81,12 +81,7 @@ public class Service {
 		this.workerServices = workerServices;
 	}
 
-	@Override
-	public String toString() {
-		return "Service [id=" + id + ", name=" + name + ", category="
-				+ category + ", workerServices=" + workerServices
-				+ ", serviceContactDetails=" + serviceContactDetails + "]";
-	}
+	
 	
 	
 }

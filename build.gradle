@@ -38,7 +38,7 @@ compile group: 'org.hibernate', name: 'hibernate-core', version: '4.2.19.Final'
 // https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
 compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Draft-16'
 // https://mvnrepository.com/artifact/org.apache.derby/derbyclient
-
+compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
 
 
 compile group: 'org.springframework', name: 'spring-orm', version: '4.3.5.RELEASE'

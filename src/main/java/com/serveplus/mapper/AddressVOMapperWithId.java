@@ -6,17 +6,17 @@ import com.serveplus.web.request.AddressVO;
 import com.serveplus.web.response.mapper.Mapper;
 
 public class AddressVOMapperWithId  extends AddressVOMapper{
-	private Float latitude,longitude;
+	private Location location;
 	private Address address;
-	public AddressVOMapperWithId(Float latitude, Float longitude,Address address) {
-		super(latitude,longitude);
+	public AddressVOMapperWithId(Location location,Address address) {
+		super();
 		this.address = address;
 	}
 
 	
 	@Override
 	public Address mapFrom(AddressVO source) {
-		if(address==null && (source!=null || latitude!=null || longitude!=null))
+		if(address==null && (source!=null || location!=null))
 			address = new Address();
 		if(source==null )
 			return null;

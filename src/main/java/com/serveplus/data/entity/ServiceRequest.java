@@ -2,7 +2,9 @@ package com.serveplus.data.entity;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -58,11 +60,20 @@ public class ServiceRequest extends EntityBase{
 	@Column(name = "REQUEST")
 	private String request;
 	
+	@Column(name = "PREFERRED_TIME")
+	private String preferredTime;
+	
+	@Column(name = "PREFERRED_DAYS")
+	private String preferredDays;
+	
 	@Column(name = "RATING")
 	private Integer rating;
 	
 	@OneToMany(mappedBy="serviceRequest",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private List<SrActionHistory> actionHistories;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="serviceRequest")
+	private Set<ServiceContactDetail> serviceContactDetails = new HashSet<ServiceContactDetail>(0);
 	
 	
 	
@@ -160,6 +171,25 @@ public class ServiceRequest extends EntityBase{
 		this.rating = rating;
 	}
 	
+	public String getPreferredTime() {
+		return preferredTime;
+	}
+	public void setPreferredTime(String preferredTime) {
+		this.preferredTime = preferredTime;
+	}
+	public String getPreferredDays() {
+		return preferredDays;
+	}
+	public Set<ServiceContactDetail> getServiceContactDetails() {
+		return serviceContactDetails;
+	}
+	public void setServiceContactDetails(
+			Set<ServiceContactDetail> serviceContactDetails) {
+		this.serviceContactDetails = serviceContactDetails;
+	}
+	public void setPreferredDays(String preferredDays) {
+		this.preferredDays = preferredDays;
+	}
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();

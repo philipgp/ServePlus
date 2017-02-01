@@ -10,7 +10,7 @@ import com.serveplus.data.entity.Address;
 import com.serveplus.data.entity.ContactDetail;
 import com.serveplus.data.entity.ContactType;
 import com.serveplus.data.entity.Customer;
-import com.serveplus.data.entity.CustomerContactDetail;
+import com.serveplus.data.entity.UserContact;
 import com.serveplus.data.entity.Location;
 import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.ServiceRequest;

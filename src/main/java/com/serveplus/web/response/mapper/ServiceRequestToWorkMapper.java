@@ -10,7 +10,7 @@ import com.serveplus.data.entity.Address;
 import com.serveplus.data.entity.ContactDetail;
 import com.serveplus.data.entity.ContactType;
 import com.serveplus.data.entity.Customer;
-import com.serveplus.data.entity.CustomerContactDetail;
+import com.serveplus.data.entity.UserContact;
 import com.serveplus.data.entity.Location;
 import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.ServiceRequest;
@@ -43,10 +43,7 @@ public class ServiceRequestToWorkMapper implements Mapper<ServiceRequest,WorkVO>
 			User user = customer.getUser();
 			
 			if(user!=null){
-				Address defaultAddress = user.getDefaultAddress();
-				if(defaultAddress!=null){
-					
-				}
+				
 				StringBuilder sb = new StringBuilder();
 				sb.append(user.getFirstName());
 				if(!StringUtils.isEmpty(user.getMiddleName())){
@@ -55,10 +52,10 @@ public class ServiceRequestToWorkMapper implements Mapper<ServiceRequest,WorkVO>
 				sb.append(" ").append(user.getLastName());
 				workVO.setFullName(sb.toString());
 			}
-			ContactDetail phoneContact = customer.getContact(ContactType.PHONE);
+			/*ContactDetail phoneContact = customer.getContact(ContactType.PHONE);
 			if(phoneContact!=null){
 				workVO.setPhoneNo(phoneContact.getValue());	
-			}
+			}*/
 			Address serviceAddress = serviceRequest.getAddress();
 			if(serviceAddress!=null){
 				workVO.setLocalAddress(getAddressString(serviceAddress));

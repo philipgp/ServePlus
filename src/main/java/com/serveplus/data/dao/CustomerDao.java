@@ -10,6 +10,6 @@ public interface CustomerDao {
 	
 	
 	Customer findById(Long id); 
-	
+	public void save(Customer customer);
 
 }

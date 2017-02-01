@@ -1,6 +1,11 @@
 package com.serveplus.web.request.customer;
 
+import java.util.List;
+
 import com.serveplus.web.request.AddressVO;
+import com.serveplus.web.request.ContactVO;
+import com.serveplus.web.response.LocationVO;
+import com.serveplus.web.response.PreferredTime;
 
 public class CreateServiceRequestBase extends CustomerBaseRequest{
 
@@ -8,25 +13,19 @@ public class CreateServiceRequestBase extends CustomerBaseRequest{
 	 * 
 	 */
 	private static final long serialVersionUID = 607950630363214525L;
-	protected Float latitude;
-	protected Float longitude;
+	private LocationVO location;
 	protected AddressVO localAddress;
 	protected String request;
+	private PreferredTime preferredTime;
+	private List<ContactVO> contactInfos;
+	
 
-	public Float getLatitude() {
-		return latitude;
+	public LocationVO getLocation() {
+		return location;
 	}
 
-	public void setLatitude(Float latitude) {
-		this.latitude = latitude;
-	}
-
-	public Float getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(Float longitude) {
-		this.longitude = longitude;
+	public void setLocation(LocationVO location) {
+		this.location = location;
 	}
 
 	public AddressVO getLocalAddress() {
@@ -43,6 +42,33 @@ public class CreateServiceRequestBase extends CustomerBaseRequest{
 
 	public void setRequest(String request) {
 		this.request = request;
+	}
+
+	public PreferredTime getPreferredTime() {
+		return preferredTime;
+	}
+
+	public void setPreferredTime(PreferredTime preferredTime) {
+		this.preferredTime = preferredTime;
+	}
+
+	public List<ContactVO> getContactInfos() {
+		return contactInfos;
+	}
+
+	public void setContactInfos(List<ContactVO> contactInfos) {
+		this.contactInfos = contactInfos;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("CreateServiceRequestBase [location=").append(location)
+				.append(", localAddress=").append(localAddress)
+				.append(", request=").append(request)
+				.append(", preferredTime=").append(preferredTime)
+				.append(", contactInfos=").append(contactInfos).append("]");
+		return builder.toString();
 	}
 
 	/*public String getComment() {

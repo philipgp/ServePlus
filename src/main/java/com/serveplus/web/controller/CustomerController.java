@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.serveplus.service.CustomerService;
 import com.serveplus.service.WorkerService;
 import com.serveplus.web.request.customer.CreateServiceRequest;
+import com.serveplus.web.request.customer.CustomerRegisterRequest;
 import com.serveplus.web.request.customer.CustomerServiceRequestDetailRequest;
 import com.serveplus.web.request.customer.GetCustomerServiceRequest;
 import com.serveplus.web.request.customer.GetFeedbackRequest;
@@ -25,6 +26,7 @@ import com.serveplus.web.request.worker.StartWorkRequest;
 import com.serveplus.web.request.worker.WorkClosedRequest;
 import com.serveplus.web.request.worker.WorkCompletedRequest;
 import com.serveplus.web.request.worker.WorkerServiceRequestDetailRequest;
+import com.serveplus.web.response.customer.CustomerRegisterResponse;
 import com.serveplus.web.response.customer.CustomerServiceRequestDetailResponse;
 import com.serveplus.web.response.customer.GetCustomerServiceRequestResponse;
 import com.serveplus.web.response.customer.GetFeedbackResponse;
@@ -102,6 +104,12 @@ public class CustomerController {
 	@ResponseBody
 	public GetFeedbackResponse getFeedback(@RequestBody GetFeedbackRequest request){
 		return userService.getFeedbacks(request);
+	}
+	
+	@RequestMapping(value = "/registerCustomer", method = RequestMethod.POST)
+	@ResponseBody
+	public CustomerRegisterResponse registerCustomer(@RequestBody CustomerRegisterRequest request){
+		return userService.registerCustomer(request);
 	}
 	
 	

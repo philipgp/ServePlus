@@ -1,6 +1,7 @@
 package com.serveplus.service;
 
 import com.serveplus.web.request.customer.CreateServiceRequest;
+import com.serveplus.web.request.customer.CustomerRegisterRequest;
 import com.serveplus.web.request.customer.CustomerServiceRequestDetailRequest;
 import com.serveplus.web.request.customer.GetCustomerServiceRequest;
 import com.serveplus.web.request.customer.GetFeedbackRequest;
@@ -9,6 +10,7 @@ import com.serveplus.web.request.customer.RatingQuestionRequest;
 import com.serveplus.web.request.customer.UpdateServiceRequest;
 import com.serveplus.web.request.customer.UserServiceCompanyRequest;
 import com.serveplus.web.request.customer.UserServiceRequest;
+import com.serveplus.web.response.customer.CustomerRegisterResponse;
 import com.serveplus.web.response.customer.CustomerServiceRequestDetailResponse;
 import com.serveplus.web.response.customer.GetCustomerServiceRequestResponse;
 import com.serveplus.web.response.customer.GetFeedbackResponse;
@@ -29,4 +31,5 @@ public interface CustomerService {
 	public RatingQuestionResponse getRatingQuestions(RatingQuestionRequest request);
 	public RatingFeedbackResponse setFeedback(RatingFeedbackRequest request);
 	public GetFeedbackResponse getFeedbacks(GetFeedbackRequest request);
+	public CustomerRegisterResponse registerCustomer(CustomerRegisterRequest request);
 }

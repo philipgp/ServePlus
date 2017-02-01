@@ -22,9 +22,9 @@ public class CreateServiceRequest extends CreateServiceRequestBase{
 	}
 	@Override
 	public String toString() {
-		return "CreateServiceRequest [serviceId=" + serviceId + ", companyId="
-				+ companyId + ", latitude=" + latitude + ", longitude="
-				+ longitude + ", localAddress=" + localAddress + ", comment="
-				+ request + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("CreateServiceRequest [serviceId=").append(serviceId)
+				.append(", companyId=").append(companyId).append("]");
+		return builder.toString();
 	}
 }

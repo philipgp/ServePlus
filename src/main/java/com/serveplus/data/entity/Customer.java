@@ -1,12 +1,15 @@
 package com.serveplus.data.entity;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -17,19 +20,19 @@ import javax.persistence.Table;
 @Table(name = "CUSTOMER")
 public class Customer {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name = "USER_ID")
 	private User user;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="customerContactDetailId.customer")
-	private Set<CustomerContactDetail> customerContactDetails;
+	
 
 	
 	
-	public ContactDetail getContact(ContactType contactType){
+	/*public ContactDetail getContact(ContactType contactType){
 		if(customerContactDetails!=null){
 			for(CustomerContactDetail customerContactDetail:customerContactDetails){
 				if(customerContactDetail.getCustomerContactDetailId()!=null 
@@ -40,7 +43,7 @@ public class Customer {
 			}
 		}
 		return null;
-	}
+	}*/
 	public Long getId() {
 		return id;
 	}
@@ -57,14 +60,7 @@ public class Customer {
 		this.user = user;
 	}
 
-	public Set<CustomerContactDetail> getCustomerContactDetails() {
-		return customerContactDetails;
-	}
-
-	public void setCustomerContactDetails(
-			Set<CustomerContactDetail> customerContactDetails) {
-		this.customerContactDetails = customerContactDetails;
-	}
+	
 
 	@Override
 	public String toString() {

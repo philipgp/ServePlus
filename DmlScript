@@ -23,3 +23,9 @@ insert into company_service ( id , company_id ,service_id ,active ) values (1,1,
 insert into cs_assigner ( assigner_id ,cs_id , active ) values(1,1,true)
 INSERT INTO SERVICE_RATING_QUESTIONS ( ID , QUESTION ,SERVICE_ID ) VALUES(1,'WHAT DO YOU DO',1)
 INSERT INTO CS_RATING_QUESTIONS( ID , QUESTION ,CS_ID) VALUES(1,'COMPANY WHAT DO YOU DO',1)
+
+
+insert into host_prop ( id , key ,value ) values (3,'MAIL_USERNAME','test')
+insert into host_prop ( id , key ,value ) values (2,'MAIL_PORT','25')
+insert into host_prop ( id , key ,value ) values (1,'MAIL_SERVER','asdf')
+insert into host_prop ( id , key ,value ) values (4,'MAIL_PASSWORD','test')

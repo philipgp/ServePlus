@@ -93,4 +93,9 @@ public class BaseDataService<T> {
 			save(object);
 		}
 	}
+	public void saveAll(Set<T> objects){
+		for(T object:objects){
+			save(object);
+		}
+	}
 }
