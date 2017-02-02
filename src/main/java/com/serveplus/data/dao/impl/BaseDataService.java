@@ -37,6 +37,18 @@ public class BaseDataService<T> {
 		session.close();
 		return results;
 	}
+	public void remove(T t){
+		Session session = getSession();
+		org.hibernate.Transaction tx = session.beginTransaction();
+		session.delete(t);
+		tx.commit();
+		session.close();
+	}
+	public void removeAll(Set<T> items){
+		for(T item:items){
+			remove(item);
+		}
+	}
 	public List<T> getAll(){
 		List<T> results = getResultList("from "+genericType.getName());
 		return results;

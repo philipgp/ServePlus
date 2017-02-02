@@ -32,8 +32,24 @@ public class LoginCredentials {
 	@Column(name = "PASSWORD")
 	private String password;
 	
+
+	
+	@Column(name = "ACCOUNT_SUSPENDED")
+	private Boolean accountSuspended;
+	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="loginCredentials")
 	private Set<LoginSession> loginSessions;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="password_reset")
+	private Otp passwordResetOtp;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name="regn_otp_id")
+	private Otp regnOtpId;
+	
+	@Column(name = "WRONG_PASSWORD_TRY ")
+	private Integer wrongPasswordTry;
 
 	public Long getId() {
 		return id;
@@ -42,6 +58,7 @@ public class LoginCredentials {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 
 	public String getUserName() {
 		return userName;
@@ -53,9 +70,14 @@ public class LoginCredentials {
 
 	@Override
 	public String toString() {
-		return "LoginCredentials [id=" + id + ", userName=" + userName
-				+ ", password=" + password + ", loginSessions=" + loginSessions
-				+ "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("LoginCredentials [id=").append(id)
+				.append(", userName=").append(userName).append(", password=")
+				.append(password).append(", accountSuspended=")
+				.append(accountSuspended).append(", loginSessions=")
+				.append(loginSessions).append(", wrongPasswordTry=")
+				.append(wrongPasswordTry).append("]");
+		return builder.toString();
 	}
 
 	public String getPassword() {
@@ -83,6 +105,49 @@ public class LoginCredentials {
 		}
 		return null;
 	}
+
+	public Integer getWrongPasswordTry() {
+		return wrongPasswordTry;
+	}
+
+	public void setWrongPasswordTry(Integer wrongPasswordTry) {
+		this.wrongPasswordTry = wrongPasswordTry;
+	}
+	
+	public Boolean hasWrongPasswordTries(){
+		if(wrongPasswordTry>0)
+			return true;
+		else
+			return false;
+	}
+
+
+
+	public Boolean getAccountSuspended() {
+		return accountSuspended;
+	}
+
+	public void setAccountSuspended(Boolean accountSuspended) {
+		this.accountSuspended = accountSuspended;
+	}
+
+	public Otp getPasswordResetOtp() {
+		return passwordResetOtp;
+	}
+
+	public void setPasswordResetOtp(Otp passwordResetOtp) {
+		this.passwordResetOtp = passwordResetOtp;
+	}
+
+	public Otp getRegnOtpId() {
+		return regnOtpId;
+	}
+
+	public void setRegnOtpId(Otp regnOtpId) {
+		this.regnOtpId = regnOtpId;
+	}
+
+	
 	
 	
 }

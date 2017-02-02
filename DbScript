@@ -1,7 +1,19 @@
+create table OTP (
+ID number auto_increment primary key,
+code varchar2(10),
+expiry_date date);
+
 create table login_credentials(
 id number auto_increment primary key,
+regn_otp_id number references login_credentials(id),
+password_reset number references login_credentials(id),
 username varchar2(15),
-password varchar2(10));
+password varchar2(10)),
+WRONG_PASSWORD_TRY NUMBER,
+account_locked bool,
+account_suspended bool)
+;
+
 
 create table login_session(
 id number auto_increment primary key,

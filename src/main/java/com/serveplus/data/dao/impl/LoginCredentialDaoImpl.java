@@ -19,4 +19,14 @@ public class LoginCredentialDaoImpl extends BaseDataService<LoginCredentials> im
 		return result;
 	}
 
+	@Override
+	public LoginCredentials getLoginCredentials(String userName) {
+		String hql = "from LoginCredentials loginCredentials where userName=:userName";
+		ParameterMap parameterMap = new ParameterMap();
+		parameterMap.add("userName", userName);
+		//parameterMap.add("password", password);
+		LoginCredentials result = getOneResult(hql, parameterMap);
+		return result;
+	}
+
 }
