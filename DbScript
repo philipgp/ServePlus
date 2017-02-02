@@ -1,8 +1,23 @@
+create table login_credentials(
+id number auto_increment primary key,
+username varchar2(15),
+password varchar2(10));
+
+create table login_session(
+id number auto_increment primary key,
+login_credential_id number references login_credentials(id),
+channel varchar2(10),
+last_login_time date;
+last_active_time date;
+token varchar2(30));
+
+
 create table USER(
 ID int  auto_INCREMENT PRIMARY KEY,
 FIRST_NAME VARCHAR2(30),
 MIDDLE_NAME VARCHAR2(30),
 LAST_NAME VARCHAR2(30),
+LOGIN_CREDENTIAL_ID NUMBER references login_credentials(ID),
 CREATED_DATE DATE,
 LAST_MODIFIED_DATE DATE
 );
