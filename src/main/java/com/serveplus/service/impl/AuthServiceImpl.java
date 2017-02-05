@@ -1,5 +1,6 @@
 package com.serveplus.service.impl;
 
+import java.util.HashMap;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
@@ -8,21 +9,35 @@ import org.springframework.stereotype.Component;
 
 import com.serveplus.data.dao.LoginCredentialDao;
 import com.serveplus.data.dao.LoginSessionDao;
+import com.serveplus.data.dao.UserDao;
 import com.serveplus.data.entity.LoginCredentials;
 import com.serveplus.data.entity.LoginSession;
+import com.serveplus.data.entity.Otp;
+import com.serveplus.data.entity.User;
+import com.serveplus.data.entity.UserContact;
+import com.serveplus.request.mapper.OtpMapper;
 import com.serveplus.service.AuthService;
+import com.serveplus.service.ServePlusMailService;
+import com.serveplus.vo.MailVO;
 import com.serveplus.web.request.auth.ChangePasswordRequest;
+import com.serveplus.web.request.auth.ConfirmUserRegnRequest;
 import com.serveplus.web.request.auth.ForgetPasswordRequest;
 import com.serveplus.web.request.auth.LoginRequest;
 import com.serveplus.web.request.auth.LogoutRequest;
+import com.serveplus.web.request.auth.VerifyForgotPasswordOtpRequest;
 import com.serveplus.web.request.auth.mapper.LoginSessionMapper;
 import com.serveplus.web.request.auth.mapper.LoginSessionMapper2;
+import com.serveplus.web.response.ConfirmUserRegnResponseMapper;
 import com.serveplus.web.response.auth.ChangePasswordResponse;
+import com.serveplus.web.response.auth.ConfirmUserRegnResponse;
 import com.serveplus.web.response.auth.ForgetPasswordResponse;
 import com.serveplus.web.response.auth.LoginResponse;
 import com.serveplus.web.response.auth.LogoutResponse;
+import com.serveplus.web.response.auth.VerifyForgotPasswordOtpResponse;
 import com.serveplus.web.response.auth.mapper.ChangePasswordResponseMapper;
+import com.serveplus.web.response.auth.mapper.ForgetPasswordResponseMapper;
 import com.serveplus.web.response.auth.mapper.LogoutResponseMapper;
+import com.serveplus.web.response.auth.mapper.VerifyForgotPasswordOtpResponseMapper;
 import com.serveplus.web.response.mapper.LoginResponseMapper;
 import com.serveplus.web.response.worker.ServePlusUtil;
 
@@ -34,6 +49,12 @@ public class AuthServiceImpl implements AuthService{
 	
 	@Autowired
 	LoginSessionDao loginSessionDao;
+	
+	@Autowired
+	UserDao userDao;
+	
+	@Autowired
+	ServePlusMailService servePlusMailService;
 	
 	@Override
 	public LoginResponse login(LoginRequest request) {
@@ -114,8 +135,60 @@ public class AuthServiceImpl implements AuthService{
 
 	@Override
 	public ForgetPasswordResponse forgotPassword(ForgetPasswordRequest request) {
-		
-		return null;
+		LoginCredentials loginCredentials = loginCredentialDao.getLoginCredentials(request.getUserName());
+		String otpString = ServePlusUtil.generateOtp();
+		OtpMapper otpMapper = new OtpMapper();
+		Otp otp = otpMapper.mapFrom(otpString);
+		loginCredentials.setPasswordResetOtp(otp);
+		loginCredentialDao.save(loginCredentials);
+		User user = userDao.getUserByLoginCredential(loginCredentials);
+		if(user!=null){
+			UserContact primaryEmail = user.getPrimaryEmail();
+			if(primaryEmail!=null){
+				MailVO mail = new MailVO();
+				mail.setTemplateFile("forgot_code.vm");
+				mail.setTo(primaryEmail.getContactDetail().getValue());
+				HashMap<String, Object> map = new  HashMap<String, Object>();
+				map.put("otp", otpString);
+				mail.setSubject("ServePlus Password Reset");
+				mail.setFrom("vineeth5march1990@gmail.com");
+				servePlusMailService.sendMail(mail);
+			}
+		}
+		ForgetPasswordResponseMapper responseMapper = new ForgetPasswordResponseMapper();
+		ForgetPasswordResponse response = responseMapper.mapFrom(Boolean.TRUE);
+		return response;
+	}
+
+	@Override
+	public VerifyForgotPasswordOtpResponse verifyForgotPasswordOtp(
+			VerifyForgotPasswordOtpRequest request) {
+		LoginCredentials loginCredentials = loginCredentialDao.getLoginCredentials(request.getUserName());
+		if(loginCredentials!=null){
+			Otp passwordResetOtp = loginCredentials.getPasswordResetOtp();
+			if(passwordResetOtp.verifyOtp(request.getOtp())){
+				loginCredentials.setPasswordResetOtp(null);
+				loginCredentials.setPassword(request.getNewPassword());
+				loginCredentialDao.save(loginCredentials);
+			}
+		}
+		VerifyForgotPasswordOtpResponseMapper responseMapper= new VerifyForgotPasswordOtpResponseMapper();
+		VerifyForgotPasswordOtpResponse response = responseMapper.mapFrom(Boolean.TRUE);
+		return response;
+	}
+
+	@Override
+	public ConfirmUserRegnResponse confirmUserRegistration(
+			ConfirmUserRegnRequest request) {
+		LoginCredentials loginCredentials = loginCredentialDao.getLoginCredentials(request.getUserName());
+		Otp registrationOtp = loginCredentials.getRegnOtpId();
+		if(registrationOtp!=null && registrationOtp.verifyOtp(request.getOtp())){
+			loginCredentials.setRegnOtpId(null);
+			loginCredentialDao.save(loginCredentials);
+		}
+		ConfirmUserRegnResponseMapper responseMapper = new ConfirmUserRegnResponseMapper();
+		ConfirmUserRegnResponse response = responseMapper.mapFrom(Boolean.TRUE);
+		return response;
 	}
 
 }

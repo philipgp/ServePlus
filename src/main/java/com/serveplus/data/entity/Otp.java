@@ -15,6 +15,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.apache.commons.lang.StringUtils;
 
 @Entity
 @Table(name = "OTP")
@@ -29,6 +33,7 @@ public class Otp {
 	private String code;
 	
 	@Column(name = "EXPIRY_DATE")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date expiryDate;
 
 	public Long getId() {
@@ -53,6 +58,14 @@ public class Otp {
 
 	public void setExpiryDate(Date expiryDate) {
 		this.expiryDate = expiryDate;
+	}
+	
+	public boolean verifyOtp(String otp){
+		if(StringUtils.equalsIgnoreCase(getCode(),otp)
+		&& getExpiryDate().after(new Date())){
+			return true;
+		}else
+			return false;
 	}
 	
 	

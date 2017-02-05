@@ -106,11 +106,7 @@ public class CustomerController {
 		return userService.getFeedbacks(request);
 	}
 	
-	@RequestMapping(value = "/registerCustomer", method = RequestMethod.POST)
-	@ResponseBody
-	public CustomerRegisterResponse registerCustomer(@RequestBody CustomerRegisterRequest request){
-		return userService.registerCustomer(request);
-	}
+	
 	
 	
 }

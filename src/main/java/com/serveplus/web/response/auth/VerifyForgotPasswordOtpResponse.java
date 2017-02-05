@@ -1,6 +1,6 @@
 package com.serveplus.web.response.auth;
 
-public class ForgetPasswordResponse extends AuthResponse{
+public class VerifyForgotPasswordOtpResponse extends AuthResponse{
 	private Boolean status;
 
 	public Boolean getStatus() {

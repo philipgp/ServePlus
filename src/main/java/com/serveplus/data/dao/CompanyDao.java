@@ -11,5 +11,5 @@ public interface CompanyDao {
 	
 	public Company findById(Long id);
 	
-
+	public void save(Company company);
 }

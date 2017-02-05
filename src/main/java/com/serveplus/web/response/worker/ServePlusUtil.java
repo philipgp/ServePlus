@@ -5,4 +5,10 @@ public class ServePlusUtil {
 		String token = ((Long)(Math.round(Math.random()* 89999) + 10000)).toString();
 		return token;
 	}
+	
+	public static String generateOtp(){
+		String token = ((Long)(Math.round(Math.random()* 89999) + 10000)).toString();
+		return token;
+	}
+	
 }

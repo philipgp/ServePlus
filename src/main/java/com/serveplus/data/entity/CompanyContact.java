@@ -13,13 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER_CONTACT")
+@Table(name = "COMPANY_CONTACT")
 /*@AssociationOverrides({
     @AssociationOverride(name = "customerContactDetailId.customer",
         joinColumns = @JoinColumn(name = "CUSTOMER_ID")),
     @AssociationOverride(name = "customerContactDetailId.contactDetail",
         joinColumns = @JoinColumn(name = "CONTACT_DETAIL_ID")) })*/
-public class UserContact {
+public class CompanyContact {
 
 	
 	@Id
@@ -29,8 +29,8 @@ public class UserContact {
 	
 	
 	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="USER_ID")
-	private User user;
+	@JoinColumn(name="COMPANY_ID")
+	private Company company;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="CONTACT_DETAIL_ID")
@@ -50,12 +50,13 @@ public class UserContact {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	public ContactDetail getContactDetail() {

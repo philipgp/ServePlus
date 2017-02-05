@@ -62,7 +62,7 @@ public class AdminController {
 		Set<CompanyAddress> compadd = custoemrs.get(0).getCompanyAddresses();
 				
 				for(CompanyAddress service:compadd){
-					Address cat = service.getCompanyAddressId().getAddress();
+					Address cat = service.getAddress();
 					System.out.println(cat);
 				}
 		
@@ -77,7 +77,7 @@ public class AdminController {
 		User  user1 = new User();
 		user1.setId(3L);
 		user1.setFirstName("new1tname");
-		userDao.saveOrUpdate(user1);
+		//userDao.saveOrUpdate(user1);
 	return null;
 	}
 }

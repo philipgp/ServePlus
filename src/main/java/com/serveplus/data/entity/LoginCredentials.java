@@ -40,11 +40,11 @@ public class LoginCredentials {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="loginCredentials")
 	private Set<LoginSession> loginSessions;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="password_reset")
 	private Otp passwordResetOtp;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name="regn_otp_id")
 	private Otp regnOtpId;
 	

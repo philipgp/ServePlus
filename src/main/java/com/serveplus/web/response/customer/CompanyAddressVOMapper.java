@@ -10,7 +10,7 @@ public class CompanyAddressVOMapper implements Mapper<CompanyAddress,AddressVO>{
 	
 	public AddressVO mapFrom(CompanyAddress companyAddress){
 		AddressMapper addressMapper = new AddressMapper();
-		AddressVO addressVO = addressMapper.mapFrom(companyAddress.getCompanyAddressId().getAddress());
+		AddressVO addressVO = addressMapper.mapFrom(companyAddress.getAddress());
 		addressVO.setPrimary(companyAddress.getIsDefault());
 		addressVO.setActive(companyAddress.getActive());
 		return addressVO;

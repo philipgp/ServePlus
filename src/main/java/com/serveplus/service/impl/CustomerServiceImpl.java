@@ -23,12 +23,15 @@ import com.serveplus.data.entity.CompanyService;
 import com.serveplus.data.entity.CompanyServiceRatingQuestion;
 import com.serveplus.data.entity.CsAssigner;
 import com.serveplus.data.entity.Customer;
+import com.serveplus.data.entity.LoginCredentials;
+import com.serveplus.data.entity.Otp;
 import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.ServiceRatingQuestion;
 import com.serveplus.data.entity.ServiceRequest;
 import com.serveplus.data.entity.ServiceRequestRatingFeedback;
 import com.serveplus.mapper.ServiceRequestMapper;
 import com.serveplus.mapper.UpdateServiceRequestMapper;
+import com.serveplus.request.mapper.OtpMapper;
 import com.serveplus.service.CustomerService;
 import com.serveplus.service.ServePlusMailService;
 import com.serveplus.vo.MailVO;
@@ -65,6 +68,7 @@ import com.serveplus.web.response.mapper.customer.RatingQuestionResponseMapper;
 import com.serveplus.web.response.mapper.customer.UpdateServiceRequestResponseMapper;
 import com.serveplus.web.response.mapper.customer.UserServiceCompanyResponseMapper;
 import com.serveplus.web.response.mapper.customer.UserServiceResponseMapper;
+import com.serveplus.web.response.worker.ServePlusUtil;
 
 @Component
 public class CustomerServiceImpl implements CustomerService{
@@ -226,14 +230,18 @@ public class CustomerServiceImpl implements CustomerService{
 		// TODO Auto-generated method stub
 		CustomerMapper customerMapper = new CustomerMapper();
 		Customer customer = customerMapper.mapFrom(request);
-	//	customerDao.save(customer);
+		
+		LoginCredentials loginCredentials = customer.getUser().getLoginCredentials();
+		
+		customerDao.save(customer);
+		
 		MailVO mailVO = new MailVO();
 		mailVO.setFrom("vineeth5march1990@gmail.com");
 		mailVO.setTemplateFile("registration_code.vm"); 
 		mailVO.setSubject("ServePlus Registration");
 		mailVO.setTo("ppanickar@qatarairways.com.qa");
 		HashMap<String,Object> map = new HashMap<String, Object>();
-		map.put("regnCode", 1);
+		map.put("otp",loginCredentials.getRegnOtpId().getCode());
 		mailVO.setMap(map);
 		servePlusMailService.sendMail(mailVO);
 		CustomerResponseMapper responseMapper = new CustomerResponseMapper();
