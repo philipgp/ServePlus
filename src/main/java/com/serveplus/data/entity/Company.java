@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,6 +29,10 @@ public class Company {
 	
 	@Column(name = "NAME")
 	private String name;
+	
+	@ManyToOne(fetch= FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "ADMIN_ID")
+	private Admin admin;
 	
 
 	/*@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="workerServiceId.company")
@@ -81,6 +86,16 @@ public class Company {
 
 	public void setCompanyContactDetails(Set<CompanyContact> companyContactDetails) {
 		this.companyContactDetails = companyContactDetails;
+	}
+
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
 	}
 
 

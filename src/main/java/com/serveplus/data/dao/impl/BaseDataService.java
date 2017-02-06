@@ -59,17 +59,32 @@ public class BaseDataService<T> {
 		session.close();
 		return object;
 	}
-	public List<T> getResultList(String hql,ParameterMap parameterMap){
-		Session session = getSession();
-		Query query = session
-				.createQuery(hql);
+	private void setParameters(Query query,ParameterMap parameterMap){
 		HashMap<String, Object> actualMap = parameterMap.getParameterMap();
 		Set<Entry<String, Object>> entrySet = actualMap.entrySet();
 		for(Entry<String, Object> entry:entrySet){
 			String key = entry.getKey();
 			Object value = entry.getValue();
 			query.setParameter(key, value);
+			
 		}
+		
+		HashMap<String, List> actualMap2 = parameterMap.getParameterListMap();
+		if(actualMap2!=null){
+		Set<Entry<String, List>> entrySet2 = actualMap2.entrySet(); 
+		for(Entry<String, List> entry:entrySet2){
+			String key = entry.getKey();
+			List value = entry.getValue();
+			query.setParameterList(key, value);
+			
+		}
+		}
+	}
+	public List<T> getResultList(String hql,ParameterMap parameterMap){
+		Session session = getSession();
+		Query query = session
+				.createQuery(hql);
+		setParameters(query,parameterMap);
 		List results = query.list();
 		session.close();
 		return results;
@@ -79,14 +94,8 @@ public class BaseDataService<T> {
 		Session session = getSession();
 		Query query = session
 				.createQuery(hql);
-		HashMap<String, Object> actualMap = parameterMap.getParameterMap();
-		Set<Entry<String, Object>> entrySet = actualMap.entrySet();
-		for(Entry<String, Object> entry:entrySet){
-			String key = entry.getKey();
-			Object value = entry.getValue();
-			query.setParameter(key, value);
-		}
-		List results = query.list();
+		setParameters(query,parameterMap);
+		List results = query.list(); 
 		session.close();
 		if(results!=null && results.size()==1)
 			return (T) results.get(0);

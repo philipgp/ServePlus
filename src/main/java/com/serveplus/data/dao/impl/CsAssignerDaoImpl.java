@@ -26,4 +26,15 @@ public class CsAssignerDaoImpl extends BaseDataService<CsAssigner> implements Cs
 		return result;
 	}
 
+	@Override
+	public List<CsAssigner> findByAssigner(Assigner assigner) {
+		String hql = "from CsAssigner where csAssignerId.assigner=:assigner ";
+		
+		ParameterMap parameterMap = new ParameterMap();
+		parameterMap.add("assigner", assigner);
+		//parameterMap.add("service", service);
+		List<CsAssigner> result = getResultList(hql, parameterMap);
+		return result;
+	}
+
 }

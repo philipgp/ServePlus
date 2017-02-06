@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.serveplus.data.dao.ParameterMap;
 import com.serveplus.data.dao.ServiceRequestDao;
+import com.serveplus.data.entity.Assigner;
+import com.serveplus.data.entity.CompanyService;
 import com.serveplus.data.entity.ServiceRequest;
 
 @Component
@@ -36,6 +38,15 @@ public class ServiceRequestDaoImpl extends BaseDataService<ServiceRequest> imple
 		String hql = " FROM ServiceRequest serviceRequest where serviceRequest.customer.id=:customerId";
 		ParameterMap parameterMap  = new ParameterMap();
 		parameterMap.add("customerId", customerId);
+		List<ServiceRequest> result = getResultList(hql, parameterMap);
+		return result;
+	}
+
+	@Override
+	public List<ServiceRequest> getServiceRequestsForAssigner(List<Long> companyServices) {
+		String hql = " FROM ServiceRequest serviceRequest where serviceRequest.companyService.id in (:companyServices)";
+		ParameterMap parameterMap  = new ParameterMap();
+		parameterMap.addList("companyServices", companyServices);
 		List<ServiceRequest> result = getResultList(hql, parameterMap);
 		return result;
 	}

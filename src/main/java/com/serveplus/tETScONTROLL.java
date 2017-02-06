@@ -24,8 +24,8 @@ import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.User;
 import com.serveplus.data.entity.UserAddress;
 
-@Controller
-public class AdminController {
+//@Controller
+public class tETScONTROLL {
 	
 	@Autowired
 	UserDao userDao;
