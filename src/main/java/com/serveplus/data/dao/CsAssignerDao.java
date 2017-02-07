@@ -11,6 +11,8 @@ import com.serveplus.data.entity.Service;
 public interface CsAssignerDao {
 	
 	public List<CsAssigner> findBy(CompanyService companyService);
+	public CsAssigner findBy(CompanyService companyService,Assigner assigner);
 	public List<CsAssigner> findByAssigner(Assigner assigner);
 	public void save(CsAssigner csAssigner);
+	public void remove(CsAssigner csAssigner);
 }

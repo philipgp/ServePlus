@@ -41,6 +41,7 @@ public class BaseDataService<T> {
 		Session session = getSession();
 		org.hibernate.Transaction tx = session.beginTransaction();
 		session.delete(t);
+		
 		tx.commit();
 		session.close();
 	}

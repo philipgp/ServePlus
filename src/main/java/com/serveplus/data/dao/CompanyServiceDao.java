@@ -12,4 +12,5 @@ public interface CompanyServiceDao {
 	
 	public CompanyService findBy(Company company,Service service);
 	public void save(CompanyService companyService);
+	public void remove(CompanyService companyService);
 }

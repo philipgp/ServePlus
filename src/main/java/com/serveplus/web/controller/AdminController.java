@@ -20,6 +20,10 @@ import com.serveplus.web.request.admin.GetAllCustomerSummaryRequest;
 import com.serveplus.web.request.admin.GetAllWorkersSummaryRequest;
 import com.serveplus.web.request.admin.GetCustomerServiceRequestRequest;
 import com.serveplus.web.request.admin.GetWorkerServiceRequestRequest;
+import com.serveplus.web.request.admin.RemoveAssignerRequest;
+import com.serveplus.web.request.admin.RemoveCompanyServiceRequest;
+import com.serveplus.web.request.admin.RemoveCsAssignerRequest;
+import com.serveplus.web.request.admin.RemoveServiceRequest;
 import com.serveplus.web.request.assigner.GetWorkerForServiceRequest;
 import com.serveplus.web.response.admin.AddNewAdminResponse;
 import com.serveplus.web.response.admin.AddNewAssignerResponse;
@@ -27,6 +31,7 @@ import com.serveplus.web.response.admin.AddNewCompanyServiceResponse;
 import com.serveplus.web.response.admin.AddNewCsAssignerResponse;
 import com.serveplus.web.response.admin.AddNewServiceResponse;
 import com.serveplus.web.response.admin.AdminGetAllServiceRequestResponse;
+import com.serveplus.web.response.admin.BooleanResponse;
 import com.serveplus.web.response.admin.GetAllCustomerSummaryResponse;
 import com.serveplus.web.response.admin.GetAllWorkersSummaryResponse;
 import com.serveplus.web.response.admin.GetForCustomerServiceRequestResponse;
@@ -94,6 +99,29 @@ public class AdminController {
 	@ResponseBody
 	public AddNewAssignerResponse addNewAssigner(@RequestBody AddNewAssignerRequest request){
 		return adminService.addNewAssigner(request);
+	}
+	@RequestMapping(value = "/removeAssigner", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse addNewAssigner(@RequestBody RemoveAssignerRequest request){
+		return adminService.removeAssigner(request);
+	}
+	
+	@RequestMapping(value = "/removeCompanyService", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse removeCompanyService(@RequestBody RemoveCompanyServiceRequest request){
+		return adminService.removeCompanyService(request);
+	}
+	
+	@RequestMapping(value = "/removeService", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse removeService(@RequestBody RemoveServiceRequest request){
+		return adminService.removeService(request);
+	}
+	
+	@RequestMapping(value = "/removeCsAssigner", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse removeCsAssigner(@RequestBody RemoveCsAssignerRequest request){
+		return adminService.removeCsAssigner(request);
 	}
 	
 	@RequestMapping(value = "/addNewAdmin", method = RequestMethod.POST)

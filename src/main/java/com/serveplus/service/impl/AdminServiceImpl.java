@@ -37,6 +37,10 @@ import com.serveplus.web.request.admin.GetAllCustomerSummaryRequest;
 import com.serveplus.web.request.admin.GetAllWorkersSummaryRequest;
 import com.serveplus.web.request.admin.GetCustomerServiceRequestRequest;
 import com.serveplus.web.request.admin.GetWorkerServiceRequestRequest;
+import com.serveplus.web.request.admin.RemoveAssignerRequest;
+import com.serveplus.web.request.admin.RemoveCompanyServiceRequest;
+import com.serveplus.web.request.admin.RemoveCsAssignerRequest;
+import com.serveplus.web.request.admin.RemoveServiceRequest;
 import com.serveplus.web.response.admin.AddNewAdminResponse;
 import com.serveplus.web.response.admin.AddNewAdminResponseMapper;
 import com.serveplus.web.response.admin.AddNewAssignerResponse;
@@ -45,6 +49,7 @@ import com.serveplus.web.response.admin.AddNewCompanyServiceResponse;
 import com.serveplus.web.response.admin.AddNewCsAssignerResponse;
 import com.serveplus.web.response.admin.AddNewServiceResponse;
 import com.serveplus.web.response.admin.AdminGetAllServiceRequestResponse;
+import com.serveplus.web.response.admin.BooleanResponse;
 import com.serveplus.web.response.admin.GetAllCustomerSummaryResponse;
 import com.serveplus.web.response.admin.GetAllWorkersSummaryResponse;
 import com.serveplus.web.response.admin.GetForCustomerServiceRequestResponse;
@@ -193,6 +198,44 @@ public class AdminServiceImpl implements AdminService {
 		adminDao.save(admin);
 		AddNewAdminResponseMapper responseMapper = new AddNewAdminResponseMapper();
 		AddNewAdminResponse response = responseMapper.mapFrom(admin);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse removeAssigner(RemoveAssignerRequest request) {
+		Assigner assigner = assignerDao.findById(request.getAssignerId());
+		assignerDao.remove(assigner);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse removeCompanyService(RemoveCompanyServiceRequest request) {
+		Company company = companyDao.findById(request.getCompanyId());
+		Service service = serviceDao.findById(request.getServiceId());
+		CompanyService companyService = companyServiceDao.findBy(company, service);
+		companyServiceDao.remove(companyService);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse removeCsAssigner(RemoveCsAssignerRequest request) {
+		Company company = companyDao.findById(request.getCompanyId());
+		Service service = serviceDao.findById(request.getServiceId());
+		Assigner assigner = assignerDao.findById(request.getAssignerId());
+		CompanyService companyService = companyServiceDao.findBy(company, service);
+		CsAssigner csAssigner = csAssignerDao.findBy(companyService,assigner);
+		csAssignerDao.remove(csAssigner);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse removeService(RemoveServiceRequest request) {
+		Service service = serviceDao.findById(request.getServiceId());
+		serviceDao.remove(service);
+		BooleanResponse response = new BooleanResponse(true);
 		return response;
 	}
 

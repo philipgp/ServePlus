@@ -10,12 +10,17 @@ import com.serveplus.web.request.admin.GetAllCustomerSummaryRequest;
 import com.serveplus.web.request.admin.GetAllWorkersSummaryRequest;
 import com.serveplus.web.request.admin.GetCustomerServiceRequestRequest;
 import com.serveplus.web.request.admin.GetWorkerServiceRequestRequest;
+import com.serveplus.web.request.admin.RemoveAssignerRequest;
+import com.serveplus.web.request.admin.RemoveCompanyServiceRequest;
+import com.serveplus.web.request.admin.RemoveCsAssignerRequest;
+import com.serveplus.web.request.admin.RemoveServiceRequest;
 import com.serveplus.web.response.admin.AddNewAdminResponse;
 import com.serveplus.web.response.admin.AddNewAssignerResponse;
 import com.serveplus.web.response.admin.AddNewCompanyServiceResponse;
 import com.serveplus.web.response.admin.AddNewCsAssignerResponse;
 import com.serveplus.web.response.admin.AddNewServiceResponse;
 import com.serveplus.web.response.admin.AdminGetAllServiceRequestResponse;
+import com.serveplus.web.response.admin.BooleanResponse;
 import com.serveplus.web.response.admin.GetAllCustomerSummaryResponse;
 import com.serveplus.web.response.admin.GetAllWorkersSummaryResponse;
 import com.serveplus.web.response.admin.GetForCustomerServiceRequestResponse;
@@ -32,4 +37,8 @@ public interface AdminService {
 	public AddNewCsAssignerResponse addNewCsAssigner(AddNewCSAssignerRequest request);
 	public AddNewAssignerResponse addNewAssigner(AddNewAssignerRequest request);
 	public AddNewAdminResponse addNewAdmin(AddNewAdminRequest request);
+	public BooleanResponse removeAssigner(RemoveAssignerRequest request);
+	public BooleanResponse removeCompanyService(RemoveCompanyServiceRequest request);
+	public BooleanResponse removeCsAssigner(RemoveCsAssignerRequest request);
+	public BooleanResponse removeService(RemoveServiceRequest request);
 }
