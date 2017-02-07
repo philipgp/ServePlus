@@ -10,6 +10,6 @@ public interface ServiceDao {
 	
 	List<Service> getActiveServices();
 	Service findById(Long id);
-	
+	public void save(Service service);
 
 }

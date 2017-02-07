@@ -24,14 +24,12 @@ import com.serveplus.data.entity.CompanyServiceRatingQuestion;
 import com.serveplus.data.entity.CsAssigner;
 import com.serveplus.data.entity.Customer;
 import com.serveplus.data.entity.LoginCredentials;
-import com.serveplus.data.entity.Otp;
 import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.ServiceRatingQuestion;
 import com.serveplus.data.entity.ServiceRequest;
 import com.serveplus.data.entity.ServiceRequestRatingFeedback;
 import com.serveplus.mapper.ServiceRequestMapper;
 import com.serveplus.mapper.UpdateServiceRequestMapper;
-import com.serveplus.request.mapper.OtpMapper;
 import com.serveplus.service.CustomerService;
 import com.serveplus.service.ServePlusMailService;
 import com.serveplus.vo.MailVO;
@@ -68,7 +66,6 @@ import com.serveplus.web.response.mapper.customer.RatingQuestionResponseMapper;
 import com.serveplus.web.response.mapper.customer.UpdateServiceRequestResponseMapper;
 import com.serveplus.web.response.mapper.customer.UserServiceCompanyResponseMapper;
 import com.serveplus.web.response.mapper.customer.UserServiceResponseMapper;
-import com.serveplus.web.response.worker.ServePlusUtil;
 
 @Component
 public class CustomerServiceImpl implements CustomerService{

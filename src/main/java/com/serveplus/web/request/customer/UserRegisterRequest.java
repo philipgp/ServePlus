@@ -20,6 +20,8 @@ public class UserRegisterRequest extends ServePlusRequest{
 	private String lastName;
 	private Date dateOfBirth;
 	private List<AddressVO> addresses;
+	private String userName;
+	private String password;
 
 	public List<ContactVO> getContactInfos() {
 		return contactInfos;
@@ -75,6 +77,22 @@ public class UserRegisterRequest extends ServePlusRequest{
 
 	public void setAddresses(List<AddressVO> addresses) {
 		this.addresses = addresses;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	

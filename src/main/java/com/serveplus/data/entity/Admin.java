@@ -29,6 +29,11 @@ public class Admin {
 	private User user;
 	
 	
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name = "COMPANY_ID")
+	private Company company;
+	
+	
 
 	
 	
@@ -62,9 +67,17 @@ public class Admin {
 
 	
 
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", user=" + user + "]";
+		return "Admin [id=" + id + ", user=" + user + ", company=" + company + "]";
 	}
 
 	

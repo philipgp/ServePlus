@@ -5,10 +5,10 @@ expiry_date date);
 
 create table login_credentials(
 id number auto_increment primary key,
-regn_otp_id number references login_credentials(id),
-password_reset number references login_credentials(id),
+regn_otp_id number references Otp(id),
+password_reset number references Otp(id),
 username varchar2(15),
-password varchar2(10)),
+password varchar2(10),
 WRONG_PASSWORD_TRY NUMBER,
 account_locked bool,
 account_suspended bool)
@@ -19,8 +19,8 @@ create table login_session(
 id number auto_increment primary key,
 login_credential_id number references login_credentials(id),
 channel varchar2(10),
-last_login_time date;
-last_active_time date;
+last_login_time date,
+last_active_time date,
 token varchar2(30));
 
 
@@ -52,7 +52,14 @@ CREATED_DATE DATE,
 LAST_MODIFIED_DATE DATE
 );
 create table ASSIGNER( 
-ID INT PRIMARY KEY , 
+ID INT auto_increement PRIMARY KEY , 
+USER_ID INT REFERENCES USER(ID),
+COMPANY_ID INT REFERENCES COMPANY(ID),
+CREATED_DATE DATE,
+LAST_MODIFIED_DATE DATE
+);
+create table ADMIN( 
+ID INT auto_increement PRIMARY KEY , 
 USER_ID INT REFERENCES USER(ID),
 COMPANY_ID INT REFERENCES COMPANY(ID),
 CREATED_DATE DATE,
@@ -65,7 +72,7 @@ CREATED_DATE DATE,
 LAST_MODIFIED_DATE DATE
 );
 create table SERVICE(
- ID INT PRIMARY KEY,
+ ID INT auto_increment PRIMARY KEY,
   NAME VARCHAR2(50),
    CATEGORY_ID INT REFERENCES CATEGORY(ID),
    CREATED_DATE DATE,

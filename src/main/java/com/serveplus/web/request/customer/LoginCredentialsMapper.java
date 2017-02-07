@@ -6,10 +6,10 @@ import com.serveplus.request.mapper.OtpMapper;
 import com.serveplus.web.response.mapper.Mapper;
 import com.serveplus.web.response.worker.ServePlusUtil;
 
-public class LoginCredentialsMapper implements Mapper<CustomerRegisterRequest,LoginCredentials>{
+public class LoginCredentialsMapper implements Mapper<UserRegisterRequest,LoginCredentials>{
 
 	@Override
-	public LoginCredentials mapFrom(CustomerRegisterRequest source) {
+	public LoginCredentials mapFrom(UserRegisterRequest source) {
 		LoginCredentials loginCredentials = new  LoginCredentials();
 		loginCredentials.setUserName(source.getUserName());
 		loginCredentials.setPassword(source.getPassword());
