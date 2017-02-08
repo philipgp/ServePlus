@@ -32,7 +32,8 @@ public class LoginCredentials {
 	@Column(name = "PASSWORD")
 	private String password;
 	
-
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="loginCredentials")
+	private User user;
 	
 	@Column(name = "ACCOUNT_SUSPENDED")
 	private Boolean accountSuspended;
@@ -145,6 +146,14 @@ public class LoginCredentials {
 
 	public void setRegnOtpId(Otp regnOtpId) {
 		this.regnOtpId = regnOtpId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	

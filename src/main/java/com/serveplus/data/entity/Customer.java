@@ -29,7 +29,8 @@ public class Customer {
 	private User user;
 	
 	
-
+	@Column(name = "ACTIVE")
+	private Boolean active;
 	
 	
 	/*public ContactDetail getContact(ContactType contactType){
@@ -65,6 +66,14 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", user=" + user + "]";
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	

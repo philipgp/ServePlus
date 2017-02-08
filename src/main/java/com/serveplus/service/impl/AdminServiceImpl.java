@@ -14,6 +14,7 @@ import com.serveplus.data.dao.CustomerDao;
 import com.serveplus.data.dao.ServiceDao;
 import com.serveplus.data.dao.ServiceRequestDao;
 import com.serveplus.data.dao.WorkerDao;
+import com.serveplus.data.dao.WorkerServiceDao;
 import com.serveplus.data.entity.Admin;
 import com.serveplus.data.entity.Assigner;
 import com.serveplus.data.entity.Company;
@@ -24,12 +25,16 @@ import com.serveplus.data.entity.Customer;
 import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.ServiceRequest;
 import com.serveplus.data.entity.Worker;
+import com.serveplus.data.entity.WorkerService;
 import com.serveplus.service.AdminService;
 import com.serveplus.web.request.admin.AddNewAdminRequest;
 import com.serveplus.web.request.admin.AddNewAssignerRequest;
 import com.serveplus.web.request.admin.AddNewCSAssignerRequest;
 import com.serveplus.web.request.admin.AddNewCompanyServiceRequest;
 import com.serveplus.web.request.admin.AddNewServiceRequest;
+import com.serveplus.web.request.admin.AddNewWorkerRequest;
+import com.serveplus.web.request.admin.AddNewWorkerServiceRequest;
+import com.serveplus.web.request.admin.AddWorkerServiceMapper;
 import com.serveplus.web.request.admin.AdminGetAllServiceRequestRequest;
 import com.serveplus.web.request.admin.AdminMapper;
 import com.serveplus.web.request.admin.AssignerMapper;
@@ -41,6 +46,19 @@ import com.serveplus.web.request.admin.RemoveAssignerRequest;
 import com.serveplus.web.request.admin.RemoveCompanyServiceRequest;
 import com.serveplus.web.request.admin.RemoveCsAssignerRequest;
 import com.serveplus.web.request.admin.RemoveServiceRequest;
+import com.serveplus.web.request.admin.RemoveWorkerRequest;
+import com.serveplus.web.request.admin.RemoveWorkerServiceRequest;
+import com.serveplus.web.request.admin.UpdateAssignerMapper;
+import com.serveplus.web.request.admin.UpdateAssignerRequest;
+import com.serveplus.web.request.admin.UpdateCompanyServiceMapper;
+import com.serveplus.web.request.admin.UpdateCompanyServiceRequest;
+import com.serveplus.web.request.admin.UpdateCsAssigneMapper;
+import com.serveplus.web.request.admin.UpdateCsAssigneRequest;
+import com.serveplus.web.request.admin.UpdateWorkerMapper;
+import com.serveplus.web.request.admin.UpdateWorkerRequest;
+import com.serveplus.web.request.admin.UpdateWorkerServiceMapper;
+import com.serveplus.web.request.admin.UpdateWorkerServiceRequest;
+import com.serveplus.web.request.admin.WorkerMapper;
 import com.serveplus.web.response.admin.AddNewAdminResponse;
 import com.serveplus.web.response.admin.AddNewAdminResponseMapper;
 import com.serveplus.web.response.admin.AddNewAssignerResponse;
@@ -48,6 +66,8 @@ import com.serveplus.web.response.admin.AddNewAssignerResponseMapper;
 import com.serveplus.web.response.admin.AddNewCompanyServiceResponse;
 import com.serveplus.web.response.admin.AddNewCsAssignerResponse;
 import com.serveplus.web.response.admin.AddNewServiceResponse;
+import com.serveplus.web.response.admin.AddNewWorkerResponse;
+import com.serveplus.web.response.admin.AddNewWorkerResponseMapper;
 import com.serveplus.web.response.admin.AdminGetAllServiceRequestResponse;
 import com.serveplus.web.response.admin.BooleanResponse;
 import com.serveplus.web.response.admin.GetAllCustomerSummaryResponse;
@@ -83,6 +103,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	CompanyServiceDao companyServiceDao;
+	
+	@Autowired
+	WorkerServiceDao workerServiceDao;
 	
 	@Autowired
 	AssignerDao assignerDao;
@@ -237,6 +260,112 @@ public class AdminServiceImpl implements AdminService {
 		serviceDao.remove(service);
 		BooleanResponse response = new BooleanResponse(true);
 		return response;
+	}
+
+	@Override
+	public BooleanResponse removeWorker(RemoveWorkerRequest request) {
+		Worker worker = workerDao.findById(request.getWorkerId());
+		workerDao.remove(worker);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse updateWorker(UpdateWorkerRequest request) {
+		Worker worker = workerDao.findById(request.getWorkerId());
+		UpdateWorkerMapper updateWorkerMapper = new UpdateWorkerMapper(worker);
+		worker = updateWorkerMapper.mapFrom(request);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public AddNewWorkerResponse addNewWorker(AddNewWorkerRequest request) {
+		Company company = companyDao.findById(request.getCompanyId());
+		WorkerMapper assignerMapper = new WorkerMapper(company);
+		Worker worker = assignerMapper.mapFrom(request);
+		workerDao.save(worker); 
+		AddNewWorkerResponseMapper responseMapper = new AddNewWorkerResponseMapper();
+		AddNewWorkerResponse response = responseMapper.mapFrom(worker);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse updateAssigner(UpdateAssignerRequest request) {
+		Assigner worker = assignerDao.findById(request.getAssignerId());
+		UpdateAssignerMapper updateWorkerMapper = new UpdateAssignerMapper(worker);
+		worker = updateWorkerMapper.mapFrom(request);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse updateCompanyService(
+			UpdateCompanyServiceRequest request) {
+		Company company = companyDao.findById(request.getCompanyId());
+		Service service = serviceDao.findById(request.getServiceId());
+		CompanyService companyService = companyServiceDao.findBy(company, service);
+		UpdateCompanyServiceMapper mapper = new UpdateCompanyServiceMapper(companyService);
+		companyService = mapper.mapFrom(request);
+		companyServiceDao.save(companyService);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse updateCsAssigner(UpdateCsAssigneRequest request) {
+		Company company = companyDao.findById(request.getCompanyId());
+		Service service = serviceDao.findById(request.getServiceId());
+		CompanyService companyService = companyServiceDao.findBy(company, service);
+		Assigner assigner = assignerDao.findById(request.getAssignerId());
+		CsAssigner csAssigner = csAssignerDao.findBy(companyService, assigner);
+		UpdateCsAssigneMapper mapper = new UpdateCsAssigneMapper(csAssigner);
+		csAssigner = mapper.mapFrom(request);
+		csAssignerDao.save(csAssigner);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse addNewWorkerService(
+			AddNewWorkerServiceRequest request) {
+		Company company = companyDao.findById(request.getCompanyId());
+		Service service = serviceDao.findById(request.getServiceId());
+		CompanyService companyService = companyServiceDao.findBy(company, service);
+		Worker worker = workerDao.findById(request.getWorkerId());
+		AddWorkerServiceMapper addWorkerServiceMapper = new AddWorkerServiceMapper(worker, service);
+		WorkerService workerService = addWorkerServiceMapper.mapFrom(request);
+		workerServiceDao.save(workerService);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse updateWorkerService(
+			UpdateWorkerServiceRequest request) {
+		Company company = companyDao.findById(request.getCompanyId());
+		Service service = serviceDao.findById(request.getServiceId());
+		CompanyService companyService = companyServiceDao.findBy(company, service);
+		Worker worker = workerDao.findById(request.getWorkerId());
+		WorkerService workerService = workerServiceDao.findBy(service, worker);
+		UpdateWorkerServiceMapper addWorkerServiceMapper = new UpdateWorkerServiceMapper(workerService);
+		workerService = addWorkerServiceMapper.mapFrom(request);
+		workerServiceDao.save(workerService);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+	}
+
+	@Override
+	public BooleanResponse removeWorkerService(
+			RemoveWorkerServiceRequest removeWorkerServiceRequest) {
+		Company company = companyDao.findById(removeWorkerServiceRequest.getCompanyId());
+		Service service = serviceDao.findById(removeWorkerServiceRequest.getServiceId());
+		Worker worker = workerDao.findById(removeWorkerServiceRequest.getWorkerId());
+		WorkerService workerService = workerServiceDao.findBy(service, worker);
+		workerServiceDao.remove(workerService);
+		BooleanResponse response = new BooleanResponse(true);
+		return response;
+		
 	}
 
 }

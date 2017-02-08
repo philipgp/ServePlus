@@ -26,6 +26,9 @@ public class Assigner {
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "COMPANY_ID")
 	private Company company;
+	
+	@Column(name = "ACTIVE")
+	private Boolean active;
 
 	public Long getId() {
 		return id;
@@ -49,6 +52,14 @@ public class Assigner {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	@Override

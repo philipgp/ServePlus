@@ -1,10 +1,19 @@
 package com.serveplus.web.response.auth;
 
-import com.serveplus.web.response.ServePlusResponse;
+import java.util.List;
+
+import com.serveplus.vo.UserRoleVO;
 
 public class LoginResponse extends AuthResponse {
 	private String token;
+	private List<UserRoleVO> userRoles;
 	
+	public List<UserRoleVO> getUserRoles() {
+		return userRoles;
+	}
+	public void setUserRoles(List<UserRoleVO> userRoles) {
+		this.userRoles = userRoles;
+	}
 	public String getToken() {
 		return token;
 	}
@@ -12,5 +21,11 @@ public class LoginResponse extends AuthResponse {
 		this.token = token;
 	}
 	
-	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("LoginResponse [token=").append(token)
+				.append(", userRoles=").append(userRoles).append("]");
+		return builder.toString();
+	}
 }

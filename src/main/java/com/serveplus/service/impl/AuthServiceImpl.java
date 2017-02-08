@@ -1,15 +1,23 @@
 package com.serveplus.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.serveplus.data.dao.AdminDao;
+import com.serveplus.data.dao.AssignerDao;
+import com.serveplus.data.dao.CustomerDao;
 import com.serveplus.data.dao.LoginCredentialDao;
 import com.serveplus.data.dao.LoginSessionDao;
 import com.serveplus.data.dao.UserDao;
+import com.serveplus.data.entity.Admin;
+import com.serveplus.data.entity.Assigner;
+import com.serveplus.data.entity.Customer;
 import com.serveplus.data.entity.LoginCredentials;
 import com.serveplus.data.entity.LoginSession;
 import com.serveplus.data.entity.Otp;
@@ -19,6 +27,8 @@ import com.serveplus.request.mapper.OtpMapper;
 import com.serveplus.service.AuthService;
 import com.serveplus.service.ServePlusMailService;
 import com.serveplus.vo.MailVO;
+import com.serveplus.vo.UserRole;
+import com.serveplus.vo.UserRoleVO;
 import com.serveplus.web.request.auth.ChangePasswordRequest;
 import com.serveplus.web.request.auth.ConfirmUserRegnRequest;
 import com.serveplus.web.request.auth.ForgetPasswordRequest;
@@ -51,16 +61,55 @@ public class AuthServiceImpl implements AuthService{
 	LoginSessionDao loginSessionDao;
 	
 	@Autowired
+	CustomerDao customerDao;
+	
+	@Autowired
+	AdminDao adminDao;
+	
+	@Autowired
+	AssignerDao assignerDao;
+	
+	@Autowired
 	UserDao userDao;
 	
 	@Autowired
 	ServePlusMailService servePlusMailService;
 	
+	private List<UserRoleVO> getUserRoles(User user){
+		List<UserRoleVO> userRoles = new ArrayList<UserRoleVO>();
+		Customer customer = customerDao.findByUser(user);
+		if(customer!=null){
+			UserRoleVO userRole = new UserRoleVO();
+			userRoles.add(userRole);
+			userRole.setId(customer.getId());
+			userRole.setUserRole(UserRole.CUSTOMER);
+		}
+		Assigner assigner = assignerDao.findByUser(user);
+		if(assigner!=null){
+			UserRoleVO userRole = new UserRoleVO();
+			userRoles.add(userRole);
+			userRole.setId(assigner.getId());
+			userRole.setUserRole(UserRole.ASSIGNER);
+		}
+		Admin admin = adminDao.findByUser(user);
+		if(admin!=null){
+			UserRoleVO userRole = new UserRoleVO();
+			userRoles.add(userRole);
+			userRole.setId(admin.getId());
+			if(admin.getId() == 0)
+				userRole.setUserRole(UserRole.SUPER_ADMIN);
+			else
+				userRole.setUserRole(UserRole.ADMIN);
+		}	
+		return userRoles;
+	}
 	@Override
 	public LoginResponse login(LoginRequest request) {
 		LoginCredentials credentials = loginCredentialDao.getLoginCredentials(request.getUserName(), request.getPassword());
 		LoginSession loginSession = null;
+		List<UserRoleVO> userRoles = null;
 		if(credentials!=null){
+			userRoles = getUserRoles(credentials.getUser());
 			 loginSession = credentials.getLoginSession(request.getChannel());
 			if(loginSession == null){
 				
@@ -75,8 +124,10 @@ public class AuthServiceImpl implements AuthService{
 			loginSessionDao.save(loginSession);
 			 
 		}
+		
 		LoginResponseMapper responseMapper = new LoginResponseMapper();
 		LoginResponse response = responseMapper.mapFrom(loginSession);
+		response.setUserRoles(userRoles);
 		return response;
 	}
 

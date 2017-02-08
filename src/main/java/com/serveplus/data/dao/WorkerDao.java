@@ -9,4 +9,6 @@ public interface WorkerDao {
 	public Worker findById(Long id);
 	public List<Worker> getAll();
 	public List<Worker> getAllFromCompany(Company company);
+	public void remove(Worker worker);
+	public void save(Worker worker);
 }

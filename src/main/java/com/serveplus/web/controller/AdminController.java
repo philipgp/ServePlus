@@ -15,6 +15,7 @@ import com.serveplus.web.request.admin.AddNewAssignerRequest;
 import com.serveplus.web.request.admin.AddNewCSAssignerRequest;
 import com.serveplus.web.request.admin.AddNewCompanyServiceRequest;
 import com.serveplus.web.request.admin.AddNewServiceRequest;
+import com.serveplus.web.request.admin.AddNewWorkerServiceRequest;
 import com.serveplus.web.request.admin.AdminGetAllServiceRequestRequest;
 import com.serveplus.web.request.admin.GetAllCustomerSummaryRequest;
 import com.serveplus.web.request.admin.GetAllWorkersSummaryRequest;
@@ -24,6 +25,13 @@ import com.serveplus.web.request.admin.RemoveAssignerRequest;
 import com.serveplus.web.request.admin.RemoveCompanyServiceRequest;
 import com.serveplus.web.request.admin.RemoveCsAssignerRequest;
 import com.serveplus.web.request.admin.RemoveServiceRequest;
+import com.serveplus.web.request.admin.RemoveWorkerRequest;
+import com.serveplus.web.request.admin.RemoveWorkerServiceRequest;
+import com.serveplus.web.request.admin.UpdateAssignerRequest;
+import com.serveplus.web.request.admin.UpdateCompanyServiceRequest;
+import com.serveplus.web.request.admin.UpdateCsAssigneRequest;
+import com.serveplus.web.request.admin.UpdateWorkerRequest;
+import com.serveplus.web.request.admin.UpdateWorkerServiceRequest;
 import com.serveplus.web.request.assigner.GetWorkerForServiceRequest;
 import com.serveplus.web.response.admin.AddNewAdminResponse;
 import com.serveplus.web.response.admin.AddNewAssignerResponse;
@@ -36,6 +44,7 @@ import com.serveplus.web.response.admin.GetAllCustomerSummaryResponse;
 import com.serveplus.web.response.admin.GetAllWorkersSummaryResponse;
 import com.serveplus.web.response.admin.GetForCustomerServiceRequestResponse;
 import com.serveplus.web.response.admin.GetForWorkerServiceRequestResponse;
+import com.serveplus.web.response.admin.UpdateWorkerResponse;
 import com.serveplus.web.response.auth.GetWorkerForServiceResponse;
 
 @Controller
@@ -82,6 +91,11 @@ public class AdminController {
 	public AddNewServiceResponse addNewService(@RequestBody AddNewServiceRequest request){
 		return adminService.addNewService(request);
 	}
+	@RequestMapping(value = "/addNewWorkerService", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse addNewWorkerService(@RequestBody AddNewWorkerServiceRequest request){
+		return adminService.addNewWorkerService(request);
+	}
 	
 	@RequestMapping(value = "/addNewCompanyService", method = RequestMethod.POST)
 	@ResponseBody
@@ -100,16 +114,29 @@ public class AdminController {
 	public AddNewAssignerResponse addNewAssigner(@RequestBody AddNewAssignerRequest request){
 		return adminService.addNewAssigner(request);
 	}
+	
 	@RequestMapping(value = "/removeAssigner", method = RequestMethod.POST)
 	@ResponseBody
-	public BooleanResponse addNewAssigner(@RequestBody RemoveAssignerRequest request){
+	public BooleanResponse removeAssigner(@RequestBody RemoveAssignerRequest request){
 		return adminService.removeAssigner(request);
+	}
+	
+	@RequestMapping(value = "/removeWorker", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse removeWorker(@RequestBody RemoveWorkerRequest request){
+		return adminService.removeWorker(request);
 	}
 	
 	@RequestMapping(value = "/removeCompanyService", method = RequestMethod.POST)
 	@ResponseBody
 	public BooleanResponse removeCompanyService(@RequestBody RemoveCompanyServiceRequest request){
 		return adminService.removeCompanyService(request);
+	}
+	
+	@RequestMapping(value = "/removeWorkerService", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse removeWorkerService(@RequestBody RemoveWorkerServiceRequest request){
+		return adminService.removeWorkerService(request);
 	}
 	
 	@RequestMapping(value = "/removeService", method = RequestMethod.POST)
@@ -122,6 +149,35 @@ public class AdminController {
 	@ResponseBody
 	public BooleanResponse removeCsAssigner(@RequestBody RemoveCsAssignerRequest request){
 		return adminService.removeCsAssigner(request);
+	}
+	
+	@RequestMapping(value = "/updateWorker", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse updateWorker(@RequestBody UpdateWorkerRequest request){
+		return adminService.updateWorker(request);
+	}
+	
+	@RequestMapping(value = "/updateAssigner", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse updateAssigner(@RequestBody UpdateAssignerRequest request){
+		return adminService.updateAssigner(request); 
+	}
+	@RequestMapping(value = "/updateCompanyService", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse updateCompanyService(@RequestBody UpdateCompanyServiceRequest request){
+		return adminService.updateCompanyService(request); 
+	}
+	
+	@RequestMapping(value = "/updateWorkerService", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse updateWorkerService(@RequestBody UpdateWorkerServiceRequest request){
+		return adminService.updateWorkerService(request); 
+	}
+	
+	@RequestMapping(value = "/updateCsAssigner", method = RequestMethod.POST)
+	@ResponseBody
+	public BooleanResponse updateCsAssigner(@RequestBody UpdateCsAssigneRequest request){
+		return adminService.updateCsAssigner(request); 
 	}
 	
 	@RequestMapping(value = "/addNewAdmin", method = RequestMethod.POST)

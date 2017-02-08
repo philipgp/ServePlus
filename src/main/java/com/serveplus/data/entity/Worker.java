@@ -24,6 +24,9 @@ public class Worker {
 	@JoinColumn(name = "USER_ID")
 	private User user;
 	
+	@Column(name = "ACTIVE")
+	private Boolean active;
+	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "COMPANY_ID")
 	private Company company;
@@ -63,10 +66,22 @@ public class Worker {
 		this.workerServices = workerServices;
 	}
 
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
-		return "Worker [id=" + id + ", user=" + user + ", company=" + company
-				+ ", workerServices=" + workerServices + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Worker [id=").append(id).append(", user=").append(user)
+				.append(", active=").append(active).append(", company=")
+				.append(company).append(", workerServices=")
+				.append(workerServices).append("]");
+		return builder.toString();
 	}
 
 	

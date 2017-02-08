@@ -7,6 +7,7 @@ public class ContactVO {
 	private String value;
 	private Boolean IsDefault;
 	private Boolean IsActive;
+	
 	public ContactType getType() {
 		return type;
 	}

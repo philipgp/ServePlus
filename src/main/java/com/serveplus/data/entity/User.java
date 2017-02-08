@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.serveplus.data.dao.EntityBaseEventListener;
 
 @Entity
@@ -29,27 +31,30 @@ public class User  extends EntityBase{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")
 	private Long id;
-	
+
 	@Column(name = "FIRST_NAME")
 	private String firstName;
-	
+
 	@Column(name = "MIDDLE_NAME")
 	private String middleName;
-	
+
 	@Column(name = "LAST_NAME")
 	private String lastName;
 	
-	
+	@Column(name = "TITLE")
+	private String title;
+
+
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="LOGIN_CREDENTIAL_ID")
 	private LoginCredentials loginCredentials;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="user")
 	private Set<UserAddress> userAddresses;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="user")
 	private Set<UserContact> userContactDetails = new HashSet<UserContact>(0);
-	
+
 	public UserContact getPrimaryEmail(){
 		if(userContactDetails!=null){
 			for(UserContact userContactDetail:userContactDetails){
@@ -62,7 +67,22 @@ public class User  extends EntityBase{
 		}
 		return null;
 	}
-	
+	public void superImpose(User user){
+		if(user!=null) {
+			if(StringUtils.isNotEmpty(user.getFirstName()))
+				setFirstName(user.getFirstName());
+			if(StringUtils.isNotEmpty(user.getMiddleName()))
+				setMiddleName(user.getMiddleName());
+			if(StringUtils.isNotEmpty(user.getLastName()))
+				setLastName(user.getLastName());
+			if(StringUtils.isNotEmpty(user.getTitle()))
+				setTitle(user.getTitle());
+			setUserAddresses(user.getUserAddresses());
+			setUserContactDetails(user.getUserContactDetails());
+			
+		}
+	}
+
 	/*public Address getDefaultAddress(){
 		if(userAddresses!=null){
 			for(UserAddress userAddress:userAddresses){
@@ -130,6 +150,12 @@ public class User  extends EntityBase{
 		this.loginCredentials = loginCredentials;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", middleName="
@@ -137,7 +163,7 @@ public class User  extends EntityBase{
 				+ userAddresses + "]";
 	}
 
-	
-	
-	
+
+
+
 }

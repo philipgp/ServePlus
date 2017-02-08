@@ -8,6 +8,7 @@ import com.serveplus.data.dao.ParameterMap;
 import com.serveplus.data.dao.WorkerServiceDao;
 import com.serveplus.data.entity.Company;
 import com.serveplus.data.entity.Service;
+import com.serveplus.data.entity.Worker;
 import com.serveplus.data.entity.WorkerService;
 
 @Component
@@ -22,6 +23,16 @@ public class WorkerServiceDaoImpl extends BaseDataService<WorkerService> impleme
 		parameterMap.add("company", company);
 		parameterMap.add("service", service);
 		List<WorkerService> results = getResultList(hql, parameterMap);
+		return results;
+	}
+
+	@Override
+	public WorkerService findBy(Service service, Worker worker) {
+		String hql = "from WorkerService where workerServiceId.worker=:worker and workerServiceId.service=:service ";
+		ParameterMap parameterMap  = new  ParameterMap();
+		parameterMap.add("worker", worker);
+		parameterMap.add("service", service);
+		WorkerService results = getOneResult(hql, parameterMap);
 		return results;
 	}
 	

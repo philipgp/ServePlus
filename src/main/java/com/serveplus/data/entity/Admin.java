@@ -33,7 +33,8 @@ public class Admin {
 	@JoinColumn(name = "COMPANY_ID")
 	private Company company;
 	
-	
+	@Column(name = "ACTIVE")
+	private Boolean active;
 
 	
 	
@@ -73,6 +74,14 @@ public class Admin {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	@Override
