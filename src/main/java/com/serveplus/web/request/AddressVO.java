@@ -4,6 +4,7 @@ import com.serveplus.web.response.LocationVO;
 
 public class AddressVO {
 	private String firstLine,secondLine;
+	private String city,state,country,poBox;
 	private Boolean primary,active;
 	private LocationVO location;
 	public Boolean getActive() {
@@ -44,6 +45,38 @@ public class AddressVO {
 
 	public void setLocation(LocationVO location) {
 		this.location = location;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getPoBox() {
+		return poBox;
+	}
+
+	public void setPoBox(String poBox) {
+		this.poBox = poBox;
 	}
 
 	@Override

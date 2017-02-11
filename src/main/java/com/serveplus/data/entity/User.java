@@ -77,8 +77,18 @@ public class User  extends EntityBase{
 				setLastName(user.getLastName());
 			if(StringUtils.isNotEmpty(user.getTitle()))
 				setTitle(user.getTitle());
+			if(user.getUserAddresses()!=null){
+				for(UserAddress userAddres:user.getUserAddresses()){
+					userAddres.setUser(this);
+				}
 			setUserAddresses(user.getUserAddresses());
+			}
+			if(user.getUserContactDetails()!=null){
+				for(UserContact contactDetail:user.getUserContactDetails()){
+					contactDetail.setUser(this);
+				}
 			setUserContactDetails(user.getUserContactDetails());
+			}
 			
 		}
 	}

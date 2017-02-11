@@ -181,6 +181,7 @@ public class AdminServiceImpl implements AdminService {
 		CompanyService companyService = new CompanyService();
 		companyService.setCompany(company);
 		companyService.setService(service);
+		companyService.setActive(Boolean.TRUE);
 		companyServiceDao.save(companyService);
 		AddNewCompanyServiceResponse response = new AddNewCompanyServiceResponse();
 		return response;
@@ -219,6 +220,8 @@ public class AdminServiceImpl implements AdminService {
 		AdminMapper assignerMapper = new AdminMapper(company);
 		Admin admin = assignerMapper.mapFrom(request);
 		adminDao.save(admin);
+		company.setAdmin(admin);
+		companyDao.save(company);
 		AddNewAdminResponseMapper responseMapper = new AddNewAdminResponseMapper();
 		AddNewAdminResponse response = responseMapper.mapFrom(admin);
 		return response;
@@ -275,6 +278,7 @@ public class AdminServiceImpl implements AdminService {
 		Worker worker = workerDao.findById(request.getWorkerId());
 		UpdateWorkerMapper updateWorkerMapper = new UpdateWorkerMapper(worker);
 		worker = updateWorkerMapper.mapFrom(request);
+		workerDao.save(worker);
 		BooleanResponse response = new BooleanResponse(true);
 		return response;
 	}

@@ -19,9 +19,10 @@ public class WorkerMapper implements Mapper<AddNewWorkerRequest,Worker>{
 	@Override
 	public Worker mapFrom(AddNewWorkerRequest source) {
 		Worker worker = new Worker();
-		
+		worker.setActive(Boolean.TRUE);
 		UserMapper userMapper = new UserMapper();
 		User user = userMapper.mapFrom(source);
+		worker.setUser(user);
 		LoginCredentialsMapper loginCredentialsMapper = new  LoginCredentialsMapper();
 		LoginCredentials loginCredentials = loginCredentialsMapper.mapFrom(source); 
 		user.setLoginCredentials(loginCredentials);

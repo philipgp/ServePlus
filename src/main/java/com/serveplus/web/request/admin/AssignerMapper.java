@@ -20,6 +20,7 @@ public class AssignerMapper implements Mapper<AddNewAssignerRequest,Assigner>{
 		
 		UserMapper userMapper = new UserMapper();
 		User user = userMapper.mapFrom(source);
+		assigner.setUser(user);
 		LoginCredentialsMapper loginCredentialsMapper = new  LoginCredentialsMapper();
 		LoginCredentials loginCredentials = loginCredentialsMapper.mapFrom(source); 
 		user.setLoginCredentials(loginCredentials);

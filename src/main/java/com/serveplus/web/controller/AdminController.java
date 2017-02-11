@@ -15,6 +15,7 @@ import com.serveplus.web.request.admin.AddNewAssignerRequest;
 import com.serveplus.web.request.admin.AddNewCSAssignerRequest;
 import com.serveplus.web.request.admin.AddNewCompanyServiceRequest;
 import com.serveplus.web.request.admin.AddNewServiceRequest;
+import com.serveplus.web.request.admin.AddNewWorkerRequest;
 import com.serveplus.web.request.admin.AddNewWorkerServiceRequest;
 import com.serveplus.web.request.admin.AdminGetAllServiceRequestRequest;
 import com.serveplus.web.request.admin.GetAllCustomerSummaryRequest;
@@ -38,6 +39,7 @@ import com.serveplus.web.response.admin.AddNewAssignerResponse;
 import com.serveplus.web.response.admin.AddNewCompanyServiceResponse;
 import com.serveplus.web.response.admin.AddNewCsAssignerResponse;
 import com.serveplus.web.response.admin.AddNewServiceResponse;
+import com.serveplus.web.response.admin.AddNewWorkerResponse;
 import com.serveplus.web.response.admin.AdminGetAllServiceRequestResponse;
 import com.serveplus.web.response.admin.BooleanResponse;
 import com.serveplus.web.response.admin.GetAllCustomerSummaryResponse;
@@ -107,6 +109,12 @@ public class AdminController {
 	@ResponseBody
 	public AddNewCsAssignerResponse addNewCsAssigner(@RequestBody AddNewCSAssignerRequest request){
 		return adminService.addNewCsAssigner(request);
+	}
+	
+	@RequestMapping(value = "/addNewWorker", method = RequestMethod.POST)
+	@ResponseBody
+	public AddNewWorkerResponse addNewWorker(@RequestBody AddNewWorkerRequest request){
+		return adminService.addNewWorker(request);
 	}
 	
 	@RequestMapping(value = "/addNewAssigner", method = RequestMethod.POST)

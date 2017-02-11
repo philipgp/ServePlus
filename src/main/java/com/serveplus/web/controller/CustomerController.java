@@ -21,6 +21,7 @@ import com.serveplus.web.request.customer.RatingQuestionRequest;
 import com.serveplus.web.request.customer.UpdateServiceRequest;
 import com.serveplus.web.request.customer.UserServiceCompanyRequest;
 import com.serveplus.web.request.customer.UserServiceRequest;
+import com.serveplus.web.request.register.UserProfileRequest;
 import com.serveplus.web.request.worker.GetAssignedWorkRequest;
 import com.serveplus.web.request.worker.StartWorkRequest;
 import com.serveplus.web.request.worker.WorkClosedRequest;
@@ -36,6 +37,7 @@ import com.serveplus.web.response.customer.UpdateServiceRequestResponse;
 import com.serveplus.web.response.customer.UserServiceCompanyResponse;
 import com.serveplus.web.response.customer.UserServiceResponse;
 import com.serveplus.web.response.mapper.CreateServiceRequestResponse;
+import com.serveplus.web.response.user.UserProfileResponse;
 import com.serveplus.web.response.worker.GetAssignedWorkResponse;
 import com.serveplus.web.response.worker.StartWorkResponse;
 import com.serveplus.web.response.worker.WorkClosedResponse;
@@ -106,7 +108,12 @@ public class CustomerController {
 		return userService.getFeedbacks(request);
 	}
 	
-	
+	/*@RequestMapping(value = "/getProfile", method = RequestMethod.POST)
+	@ResponseBody
+	public UserProfileResponse getProfile(@RequestBody UserProfileRequest request){
+		return userService.getProfile(request);
+	}*/
+	 
 	
 	
 }
