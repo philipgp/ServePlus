@@ -11,6 +11,7 @@ import com.serveplus.data.entity.Service;
 public interface CompanyServiceDao {
 	
 	public CompanyService findBy(Company company,Service service);
+	public List<CompanyService> findBy(Company company);
 	public void save(CompanyService companyService);
 	public void remove(CompanyService companyService);
 }

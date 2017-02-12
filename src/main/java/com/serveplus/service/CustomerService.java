@@ -23,7 +23,7 @@ import com.serveplus.web.response.mapper.CreateServiceRequestResponse;
 
 public interface CustomerService {
 	public UserServiceResponse getServices(UserServiceRequest request);
-	public UserServiceCompanyResponse getCompanies(UserServiceCompanyRequest request);
+	public UserServiceCompanyResponse getServiceCompanies(UserServiceCompanyRequest request);
 	public CreateServiceRequestResponse createServiceRequest(CreateServiceRequest request);
 	public GetCustomerServiceRequestResponse getServiceRequests(GetCustomerServiceRequest request);
 	public CustomerServiceRequestDetailResponse getServiceRequestDetail(CustomerServiceRequestDetailRequest request);

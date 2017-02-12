@@ -86,12 +86,25 @@ public class AssignerServiceImpl implements AssignerService{
 	public GetWorksToAssignResponse getWorksToAssign(
 			GetWorksToAssignRequest request) {
 		Assigner assigner = assignerDao.findById(request.getAssignerId());
-		List<CsAssigner> csAssigners = csAssignerDao.findByAssigner(assigner);
 		List<Long> companyServices = new ArrayList<Long>();
-		for(CsAssigner csAssigner:csAssigners){
-			companyServices.add(csAssigner.getCsAssignerId().getCompanyService().getId());
+		if(assigner.getAdmin()!=null){
+			Company company = companyDao.findById(request.getCompanyId());
+			List<CompanyService> companyServicesList = companyServiceDao.findBy(company);
+			if(companyServicesList!=null){
+				for(CompanyService companyService:companyServicesList){
+					companyServices.add(companyService.getId());
+				}
+			}
+		}else{
+			List<CsAssigner> csAssigners = csAssignerDao.findByAssigner(assigner);
+			if(csAssigners!=null){
+				for(CsAssigner csAssigner:csAssigners){
+					companyServices.add(csAssigner.getCsAssignerId().getCompanyService().getId());
+				}
+			}
 		}
 		List<ServiceRequest> serviceRequests = serviceRequestDao.getServiceRequestsForAssigner(companyServices);
+		
 		GetWorksToAssignResponseMapper responseMapper = new GetWorksToAssignResponseMapper();
 		GetWorksToAssignResponse response = responseMapper.mapFrom(serviceRequests);
 		return response;

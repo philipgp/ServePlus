@@ -26,4 +26,13 @@ public class CompanyServiceDaoImpl extends BaseDataService<CompanyService> imple
 		return result;
 	}
 
+	@Override
+	public List<CompanyService> findBy(Company company) {
+		String hql = "from CompanyService where company=:company";
+		ParameterMap parameterMap = new ParameterMap();
+		parameterMap.add("company", company);
+		List<CompanyService> result = getResultList(hql,parameterMap);
+		return result;
+	}
+
 }

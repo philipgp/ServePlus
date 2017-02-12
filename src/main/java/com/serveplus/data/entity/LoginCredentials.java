@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,14 +37,15 @@ public class LoginCredentials {
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="loginCredentials")
 	private User user;
 	
-	@Column(name = "ACCOUNT_SUSPENDED")
-	private Boolean accountSuspended;
+	@Column(name="ACCOUNT_STATUS")
+	@Enumerated(EnumType.STRING)
+	AccountStatus accountStatus;
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy="loginCredentials")
 	private Set<LoginSession> loginSessions;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
-	@JoinColumn(name="password_reset")
+	@JoinColumn(name="password_reset_otp")
 	private Otp passwordResetOtp;
 	
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
@@ -50,7 +53,7 @@ public class LoginCredentials {
 	private Otp regnOtpId;
 	
 	@Column(name = "WRONG_PASSWORD_TRY ")
-	private Integer wrongPasswordTry;
+	private Integer wrongPasswordTry = 0;
 
 	public Long getId() {
 		return id;
@@ -69,17 +72,7 @@ public class LoginCredentials {
 		this.userName = userName;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("LoginCredentials [id=").append(id)
-				.append(", userName=").append(userName).append(", password=")
-				.append(password).append(", accountSuspended=")
-				.append(accountSuspended).append(", loginSessions=")
-				.append(loginSessions).append(", wrongPasswordTry=")
-				.append(wrongPasswordTry).append("]");
-		return builder.toString();
-	}
+	
 
 	public String getPassword() {
 		return password;
@@ -108,7 +101,18 @@ public class LoginCredentials {
 	}
 
 	public Integer getWrongPasswordTry() {
-		return wrongPasswordTry;
+	/*	if(wrongPasswordTry == null)
+			return 0;
+		else*/
+			return wrongPasswordTry;
+	}
+
+	public AccountStatus getAccountStatus() {
+		return accountStatus;
+	}
+
+	public void setAccountStatus(AccountStatus accountStatus) {
+		this.accountStatus = accountStatus;
 	}
 
 	public void setWrongPasswordTry(Integer wrongPasswordTry) {
@@ -124,13 +128,6 @@ public class LoginCredentials {
 
 
 
-	public Boolean getAccountSuspended() {
-		return accountSuspended;
-	}
-
-	public void setAccountSuspended(Boolean accountSuspended) {
-		this.accountSuspended = accountSuspended;
-	}
 
 	public Otp getPasswordResetOtp() {
 		return passwordResetOtp;

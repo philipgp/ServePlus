@@ -13,6 +13,7 @@ public class LoginResponseMapper implements Mapper<LoginSession,LoginResponse>{
 			loginResponse.setToken(source.getToken());
 		}else
 			loginResponse.setStatus(Boolean.FALSE);
+		loginResponse.setAccountStatus(source.getLoginCredentials().getAccountStatus());
 		return loginResponse;
 	}
 

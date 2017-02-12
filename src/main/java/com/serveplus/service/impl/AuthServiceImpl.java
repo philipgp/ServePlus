@@ -15,6 +15,7 @@ import com.serveplus.data.dao.CustomerDao;
 import com.serveplus.data.dao.LoginCredentialDao;
 import com.serveplus.data.dao.LoginSessionDao;
 import com.serveplus.data.dao.UserDao;
+import com.serveplus.data.entity.AccountStatus;
 import com.serveplus.data.entity.Admin;
 import com.serveplus.data.entity.Assigner;
 import com.serveplus.data.entity.Customer;
@@ -149,7 +150,7 @@ public class AuthServiceImpl implements AuthService{
 		Boolean status = Boolean.FALSE;
 		
 			/*LoginCredentials loginCredentials = loginSession.getLoginCredentials();*/
-			if(loginCredentials!=null && loginCredentials.getWrongPasswordTry()<3){
+			if(loginCredentials!=null && loginCredentials.getWrongPasswordTry()!=null && loginCredentials.getWrongPasswordTry()<3){
 				if(StringUtils.equalsIgnoreCase(loginCredentials.getPassword(), request.getOldPassword())){
 					loginCredentials.setPassword(request.getNewPassword());
 					loginCredentials.setWrongPasswordTry(0);
@@ -168,11 +169,15 @@ public class AuthServiceImpl implements AuthService{
 					}else{*/
 						wrongPasswordTry++;
 						loginCredentials.setWrongPasswordTry(wrongPasswordTry);
-						loginCredentialDao.save(loginCredentials);
+						
 						if(wrongPasswordTry>=3){
-							Set<LoginSession> loginSessions = loginCredentials.getLoginSessions();
-							loginSessionDao.removeAll(loginSessions);
+							loginCredentials.setAccountStatus(AccountStatus.LOCKED);
+							/*Set<LoginSession> loginSessions = loginCredentials.getLoginSessions();*/
+							loginCredentials.setLoginSessions(null);
+							
+							//loginSessionDao.removeAll(loginSessions);
 						}
+						loginCredentialDao.save(loginCredentials);
 					/*}*/
 					
 					status = Boolean.FALSE;
@@ -233,12 +238,17 @@ public class AuthServiceImpl implements AuthService{
 			ConfirmUserRegnRequest request) {
 		LoginCredentials loginCredentials = loginCredentialDao.getLoginCredentials(request.getUserName());
 		Otp registrationOtp = loginCredentials.getRegnOtpId();
+		ConfirmUserRegnResponseMapper responseMapper = new ConfirmUserRegnResponseMapper();
+		ConfirmUserRegnResponse response = null;
 		if(registrationOtp!=null && registrationOtp.verifyOtp(request.getOtp())){
 			loginCredentials.setRegnOtpId(null);
+			loginCredentials.setAccountStatus(AccountStatus.ACTIVE);
 			loginCredentialDao.save(loginCredentials);
-		}
-		ConfirmUserRegnResponseMapper responseMapper = new ConfirmUserRegnResponseMapper();
-		ConfirmUserRegnResponse response = responseMapper.mapFrom(Boolean.TRUE);
+			response = responseMapper.mapFrom(Boolean.TRUE);
+		}else
+			response = responseMapper.mapFrom(Boolean.FALSE);
+		
+		 
 		return response;
 	}
 

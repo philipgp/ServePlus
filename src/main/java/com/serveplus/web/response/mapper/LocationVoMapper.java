@@ -9,11 +9,14 @@ public class LocationVoMapper implements Mapper<Location,LocationVO>{
 
 	@Override
 	public LocationVO mapFrom(Location source) {
-		LocationVO location = new LocationVO();
+		LocationVO location = null;
+		if(source!=null){
+			location = new LocationVO();
 		if(StringUtils.isNotEmpty(source.getLatitude()))
 			location.setLatitude(Float.valueOf(source.getLatitude()));
 		if(StringUtils.isNotEmpty(source.getLongitude()))
 			location.setLongitude(Float.valueOf(source.getLongitude()));
+		}
 		return location;
 	}
 

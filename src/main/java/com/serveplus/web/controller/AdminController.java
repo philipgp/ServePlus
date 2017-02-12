@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.serveplus.service.AdminService;
+import com.serveplus.service.CompanyService;
+import com.serveplus.service.CustomerService;
 import com.serveplus.web.request.admin.AddNewAdminRequest;
 import com.serveplus.web.request.admin.AddNewAssignerRequest;
 import com.serveplus.web.request.admin.AddNewCSAssignerRequest;
@@ -33,7 +35,9 @@ import com.serveplus.web.request.admin.UpdateCompanyServiceRequest;
 import com.serveplus.web.request.admin.UpdateCsAssigneRequest;
 import com.serveplus.web.request.admin.UpdateWorkerRequest;
 import com.serveplus.web.request.admin.UpdateWorkerServiceRequest;
-import com.serveplus.web.request.assigner.GetWorkerForServiceRequest;
+import com.serveplus.web.request.customer.UserServiceCompanyRequest;
+import com.serveplus.web.request.customer.UserServiceRequest;
+import com.serveplus.web.request.worker.CompanyServiceRequest;
 import com.serveplus.web.response.admin.AddNewAdminResponse;
 import com.serveplus.web.response.admin.AddNewAssignerResponse;
 import com.serveplus.web.response.admin.AddNewCompanyServiceResponse;
@@ -46,8 +50,9 @@ import com.serveplus.web.response.admin.GetAllCustomerSummaryResponse;
 import com.serveplus.web.response.admin.GetAllWorkersSummaryResponse;
 import com.serveplus.web.response.admin.GetForCustomerServiceRequestResponse;
 import com.serveplus.web.response.admin.GetForWorkerServiceRequestResponse;
-import com.serveplus.web.response.admin.UpdateWorkerResponse;
-import com.serveplus.web.response.auth.GetWorkerForServiceResponse;
+import com.serveplus.web.response.customer.CompanyServiceResponse;
+import com.serveplus.web.response.customer.UserServiceCompanyResponse;
+import com.serveplus.web.response.customer.UserServiceResponse;
 
 @Controller
 @RequestMapping("/admin")
@@ -58,12 +63,30 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
+	@Autowired
+	CustomerService customerService;
+	
+	@Autowired
+	CompanyService companyService;
+	
+	@RequestMapping(value = "/getServices", method = RequestMethod.POST)
+	@ResponseBody
+	public UserServiceResponse getServices(@RequestBody UserServiceRequest request){
+		return customerService.getServices(request);
+	}
+	
 	@RequestMapping(value = "/getAllServiceRequests", method = RequestMethod.POST)
 	@ResponseBody
 	public AdminGetAllServiceRequestResponse getWorkerForService(@RequestBody AdminGetAllServiceRequestRequest request){
 		return adminService.getAllServiceRequests(request);
 	}
 	
+	@RequestMapping(value = "/getServiceCompanies", method = RequestMethod.POST)
+	@ResponseBody
+	public UserServiceCompanyResponse getServiceCompanies(@RequestBody UserServiceCompanyRequest request){
+		return customerService.getServiceCompanies(request);
+	} 
+	 
 	@RequestMapping(value = "/getCustomerServiceRequests", method = RequestMethod.POST)
 	@ResponseBody
 	public GetForCustomerServiceRequestResponse getCustomerServiceRequests(@RequestBody GetCustomerServiceRequestRequest request){
@@ -93,6 +116,11 @@ public class AdminController {
 	public AddNewServiceResponse addNewService(@RequestBody AddNewServiceRequest request){
 		return adminService.addNewService(request);
 	}
+	@RequestMapping(value = "/getCompanyServices", method = RequestMethod.POST)
+	@ResponseBody
+	public CompanyServiceResponse getCompanyServices(@RequestBody CompanyServiceRequest request){
+		return companyService.getAllCompanyService(request);
+	} 
 	@RequestMapping(value = "/addNewWorkerService", method = RequestMethod.POST)
 	@ResponseBody
 	public BooleanResponse addNewWorkerService(@RequestBody AddNewWorkerServiceRequest request){

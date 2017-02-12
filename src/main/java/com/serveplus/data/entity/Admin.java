@@ -33,6 +33,10 @@ public class Admin {
 	@JoinColumn(name = "COMPANY_ID")
 	private Company company;
 	
+	@OneToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name = "ASSIGNER_ID")
+	private Assigner assigner;
+	
 	@Column(name = "ACTIVE")
 	private Boolean active;
 
@@ -78,6 +82,14 @@ public class Admin {
 
 	public Boolean getActive() {
 		return active;
+	}
+
+	public Assigner getAssigner() {
+		return assigner;
+	}
+
+	public void setAssigner(Assigner assigner) {
+		this.assigner = assigner;
 	}
 
 	public void setActive(Boolean active) {

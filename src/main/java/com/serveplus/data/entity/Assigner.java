@@ -29,6 +29,17 @@ public class Assigner {
 	
 	@Column(name = "ACTIVE")
 	private Boolean active;
+	
+	@OneToOne(mappedBy="assigner")
+	private Admin admin;
+
+	public Admin getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 
 	public Long getId() {
 		return id;

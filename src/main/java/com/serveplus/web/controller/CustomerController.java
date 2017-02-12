@@ -63,7 +63,7 @@ public class CustomerController {
 	@RequestMapping(value = "/getCompanies", method = RequestMethod.POST)
 	@ResponseBody
 	public UserServiceCompanyResponse getCompanies(@RequestBody UserServiceCompanyRequest request){
-		return userService.getCompanies(request);
+		return userService.getServiceCompanies(request);
 	}
 	
 	@RequestMapping(value = "/createServiceRequest", method = RequestMethod.POST)

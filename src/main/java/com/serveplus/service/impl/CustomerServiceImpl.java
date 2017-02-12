@@ -119,7 +119,7 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public UserServiceCompanyResponse getCompanies(
+	public UserServiceCompanyResponse getServiceCompanies(
 			UserServiceCompanyRequest request) {
 		Service service = serviceDao.findById(request.getServiceId());
 		UserServiceCompanyResponseMapper mapper = new UserServiceCompanyResponseMapper();

@@ -1,5 +1,6 @@
 package com.serveplus.web.request.customer;
 
+import com.serveplus.data.entity.AccountStatus;
 import com.serveplus.data.entity.LoginCredentials;
 import com.serveplus.data.entity.Otp;
 import com.serveplus.request.mapper.OtpMapper;
@@ -13,6 +14,9 @@ public class LoginCredentialsMapper implements Mapper<UserRegisterRequest,LoginC
 		LoginCredentials loginCredentials = new  LoginCredentials();
 		loginCredentials.setUserName(source.getUserName());
 		loginCredentials.setPassword(source.getPassword());
+		loginCredentials.setAccountStatus(AccountStatus.REGISTERED);
+		/*loginCredentials.setAccountStatus(AccountStatus.ACTIVE);*/
+		loginCredentials.setWrongPasswordTry(0);
 		String otp = ServePlusUtil.generateOtp();
 		OtpMapper otpMapper = new OtpMapper();
 		Otp otpD = otpMapper.mapFrom(otp);

@@ -26,6 +26,10 @@ public class AdminMapper implements Mapper<AddNewAdminRequest,Admin>{
 		LoginCredentials loginCredentials = loginCredentialsMapper.mapFrom(source); 
 		user.setLoginCredentials(loginCredentials);
 		admin.setCompany(company);
+		Assigner assigner = new Assigner();
+		assigner.setUser(user);
+		assigner.setAdmin(admin);
+		admin.setAssigner(assigner);
 		return admin;
 	}
 

@@ -6,11 +6,12 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.serveplus.web.request.customer.PreferredDay;
 
 public class PreferredTime {
 	private String timeStart;
 	private String timeEnd;
-	private List<String> days;
+	private List<PreferredDay> days;
 	
 	public void setPrefferedTime(String prefferedTime){
 		String[] splitStrings = StringUtils.split(prefferedTime,"-");
@@ -22,10 +23,11 @@ public class PreferredTime {
 	public void setPrefferedDays(String prefferedDays){
 		String[] splitStrings = StringUtils.split(prefferedDays,",");
 		if(splitStrings!=null){
-			List<String> prefferedDayList = new  ArrayList<String>();
+			List<PreferredDay> prefferedDayList = new  ArrayList<PreferredDay>();
 			setDays(prefferedDayList);
 			for(String splitString:splitStrings){
-				prefferedDayList.add(splitString);
+				PreferredDay preferedDay = PreferredDay.valueOf(splitString);
+				prefferedDayList.add(preferedDay);
 			}
 		}
 	}
@@ -41,7 +43,7 @@ public class PreferredTime {
 		StringBuilder sb = new StringBuilder();
 		int index = 0;
 		if(days!=null){
-			for(String day:days){
+			for(PreferredDay day:days){
 				if(index!=0)
 					sb.append(",");
 				sb.append(day);
@@ -62,10 +64,10 @@ public class PreferredTime {
 	public void setTimeEnd(String timeEnd) {
 		this.timeEnd = timeEnd;
 	}
-	public List<String> getDays() {
+	public List<PreferredDay> getDays() {
 		return days;
 	}
-	public void setDays(List<String> days) {
+	public void setDays(List<PreferredDay> days) {
 		this.days = days;
 	} 
 }
