@@ -24,7 +24,7 @@ public class HostProp {
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "KEY")
+	@Column(name = "CODE")
 	private String key;
 	
 	@Column(name = "VALUE")

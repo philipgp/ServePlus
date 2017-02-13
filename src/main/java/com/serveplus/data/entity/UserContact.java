@@ -36,7 +36,7 @@ public class UserContact {
 	@JoinColumn(name="CONTACT_DETAIL_ID")
 	private ContactDetail contactDetail;
 	
-	@Column(name = "DEFAULT")
+	@Column(name = "ISDEFAULT")
 	private Boolean isDefault;
 	
 	@Column(name = "ACTIVE")

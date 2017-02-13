@@ -13,13 +13,15 @@ jar {
 
 repositories {
        
-       
-         maven { url "http://1qdflw01.qr.qrgrp.local:8081/artifactory/tops-vr" }
-        maven { url "http://dohqdwci07.qr.qrgrp.local:8080/artifactory/maven_repo/" }
+       mavenCentral()
+         
 	   mavenLocal()
     }
 dependencies {
 compile group: 'javax.transaction', name: 'jta', version: '1.1'
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.5'
+
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
     testCompile group: 'junit', name: 'junit', version: '4.+'
 compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.0.1'

@@ -20,7 +20,7 @@ public class CsAssigner {
 	@Id
 	private CsAssignerId csAssignerId;
 	
-	@Column(name = "DEFAULT")
+	@Column(name = "ISDEFAULT")
 	private Boolean isDefault;
 	
 	@Column(name = "ACTIVE")

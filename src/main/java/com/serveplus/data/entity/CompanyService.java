@@ -35,7 +35,7 @@ public class CompanyService {
 	@JoinColumn(name = "SERVICE_ID")
 	private Service service;
 	
-	@Column(name = "DEFAULT")
+	@Column(name = "ISDEFAULT")
 	private Boolean isDefault;
 	
 	@Column(name = "ACTIVE")

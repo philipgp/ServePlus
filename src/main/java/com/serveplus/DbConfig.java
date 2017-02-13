@@ -14,13 +14,22 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 @Configuration
 public class DbConfig {
 	
-	@Bean()
+	/*@Bean()
 	public DataSource dataSource(){
 		DriverManagerDataSource dmDS = new DriverManagerDataSource();
 		dmDS.setDriverClassName("org.h2.Driver");
 		dmDS.setUrl("jdbc:h2:tcp://localhost/~/test2");
 		dmDS.setUsername("sa");
 		//dmDS.setPassword("test");
+		return dmDS;
+	}*/
+	@Bean()
+	public DataSource dataSource(){
+		DriverManagerDataSource dmDS = new DriverManagerDataSource();
+		dmDS.setDriverClassName("com.mysql.jdbc.Driver");
+		dmDS.setUrl("jdbc:mysql://localhost:56167/serveplus");
+		dmDS.setUsername("adminmgM4N9Z");
+		dmDS.setPassword("byW3CqM8p4Hg");
 		return dmDS;
 	}
 	

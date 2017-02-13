@@ -35,7 +35,7 @@ public class CompanyAddress {
 	@JoinColumn(name="ADDRESS_ID")
 	private Address address;
 	
-	@Column(name = "DEFAULT")
+	@Column(name = "ISDEFAULT")
 	private Boolean isDefault;
 	
 	@Column(name = "ACTIVE")
