@@ -176,31 +176,49 @@
   {
     "id": 970156353,
     "name": "Add New Service",
-    "url": "http://localhost:8080/serveplus/splus/admin/addNewService",
+    "url": "http://serveplus-philipgp.rhcloud.com/splus/admin/addNewService",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n\"serviceName\":\"ac2\"\n}",
+    "content": "{\n\"serviceName\":\"ac3\"\n}",
     "contentType": "application/json",
     "output": {
-      "contentType": "text/html;charset\u003dutf-8",
-      "content": "\u003chtml\u003e\u003chead\u003e\u003ctitle\u003eApache Tomcat/7.0.47 - Error report\u003c/title\u003e\u003cstyle\u003e\u003c!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--\u003e\u003c/style\u003e \u003c/head\u003e\u003cbody\u003e\u003ch1\u003eHTTP Status 404 - /Qlas-1.0/splus/admin/addNewService\u003c/h1\u003e\u003cHR size\u003d\"1\" noshade\u003d\"noshade\"\u003e\u003cp\u003e\u003cb\u003etype\u003c/b\u003e Status report\u003c/p\u003e\u003cp\u003e\u003cb\u003emessage\u003c/b\u003e \u003cu\u003e/Qlas-1.0/splus/admin/addNewService\u003c/u\u003e\u003c/p\u003e\u003cp\u003e\u003cb\u003edescription\u003c/b\u003e \u003cu\u003eThe requested resource is not available.\u003c/u\u003e\u003c/p\u003e\u003cHR size\u003d\"1\" noshade\u003d\"noshade\"\u003e\u003ch3\u003eApache Tomcat/7.0.47\u003c/h3\u003e\u003c/body\u003e\u003c/html\u003e",
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"serviceId\":4}",
       "success": true,
-      "status": 404
+      "status": 200
     },
-    "changed": true,
-    "selected": true,
-    "state": "failed"
-  },
-  {
-    "id": 970477200,
-    "name": "Register Company",
-    "url": "http://localhost:8080/Qlas-1.0/splus/admin/addNewService",
-    "method": "POST",
-    "headers": "Content-Type: application/json\n",
-    "content": "{\n\"serviceName\":\"ac\"\n}",
-    "contentType": "application/json",
     "changed": false,
     "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1003271654,
+    "name": "Register Company",
+    "url": "http://serveplus-philipgp.rhcloud.com/splus/registration/registerCompany",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"name\":\"Ac company\"\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"companyId\":1}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1003416686,
+    "name": "Add New Company Service",
+    "url": "http://serveplus-philipgp.rhcloud.com/splus/admin/addNewCompanyService",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"serviceId\":3,\n\"companyId\":1\n}",
+    "contentType": "application/json",
+    "changed": true,
+    "selected": true,
     "state": "done"
   }
 ]

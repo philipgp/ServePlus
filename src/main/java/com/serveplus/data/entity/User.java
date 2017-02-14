@@ -24,7 +24,7 @@ import org.apache.commons.lang.StringUtils;
 import com.serveplus.data.dao.EntityBaseEventListener;
 
 @Entity
-@Table(name = "User")
+@Table(name = "USER")
 @EntityListeners(EntityBaseEventListener.class)
 public class User  extends EntityBase{
 	@Id
