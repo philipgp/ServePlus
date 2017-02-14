@@ -22,6 +22,8 @@ public class UserContactMapper implements Mapper<ContactVO,UserContact>{
 		ContactMapper contactMapper = new ContactMapper();
 		ContactDetail contactDetails = contactMapper.mapFrom(source);
 		UserContact userContact = new UserContact();
+		userContact.setActive(source.getIsActive());
+		userContact.setIsDefault(source.getIsDefault());
 		/*CustomerContactDetailId customerContactDetailId = new CustomerContactDetailId();
 		customerContactDetailId.setCustomer(customer);
 		customerContactDetailId.setContactDetail(contactDetails);*/

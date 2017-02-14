@@ -23,7 +23,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SERVICE_REQUEST")
-public class ServiceRequest extends EntityBase{
+public class ServiceRequest {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

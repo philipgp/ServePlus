@@ -36,7 +36,7 @@ public class ServiceRequestToWorkMapper implements Mapper<ServiceRequest,WorkVO>
 			workVO.setType(service.getName());
 			workVO.setTypeId(String.valueOf(service.getId()));
 		}
-		workVO.setDate(serviceRequest.getCreatedDate());
+		//workVO.setDate(serviceRequest.getCreatedDate());
 		if(serviceRequest.getStatus()!=null)
 			workVO.setStatus(serviceRequest.getStatus().toString());
 		if(customer!=null){

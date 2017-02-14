@@ -1,15 +1,15 @@
 [
   {
     "id": -781083751,
-    "name": "getAssignedWorks",
-    "url": "http://localhost:8080/serveplus/splus/worker/getAssignedWorks",
+    "name": "Get Assigned Work",
+    "url": "http://\u003c$URL$\u003e/splus/worker/getAssignedWorks",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
     "content": "{\n    \"workerId\":1\n}\n",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"result\":null}",
+      "content": "{\"message\":\"Success\",\"resultCode\":1,\"result\":[{\"regnId\":\"2\",\"image\":null,\"userName\":null,\"dept\":null,\"type\":\"ac\",\"typeId\":\"1\",\"firstName\":\"C2First\",\"middleName\":\"c2middle\",\"lastName\":\"c2Last\",\"title\":null,\"status\":\"ASSIGNED\",\"date\":null,\"request\":\"my requ2s\",\"payment\":null,\"preferredTime\":null,\"address\":{\"firstLine\":\"my firstline\",\"secondLine\":\"my secondline\",\"city\":null,\"state\":null,\"country\":null,\"poBox\":null,\"primary\":null,\"active\":null,\"location\":null},\"location\":null,\"contactInfos\":[]}]}",
       "success": true,
       "status": 200
     },
@@ -19,15 +19,15 @@
   },
   {
     "id": -770185519,
-    "name": "startWork",
-    "url": "http://localhost:8080/Qlas-1.0/splus/worker/startWork",
+    "name": "Start Work",
+    "url": "http://\u003c$URL$\u003e/splus/worker/startWork",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n    \"regnId\":1,\n    \"workerId\":1\n}",
+    "content": "{\n    \"serviceRequestId\":2,\n    \"workerId\":1\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"regnId\":1,\"date\":\"2017-01-28 10:48:31\"}",
+      "content": "{\"regnId\":2,\"date\":\"2017-02-14 11:00:30\"}",
       "success": true,
       "status": 200
     },
@@ -37,15 +37,15 @@
   },
   {
     "id": -457532452,
-    "name": "workCompleted",
-    "url": "http://localhost:8080/Qlas-1.0/splus/worker/workCompleted",
+    "name": "Complete Work",
+    "url": "http://\u003c$URL$\u003e/splus/worker/workCompleted",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n    \"serviceRequestId\":1,\n    \"workerId\":1\n}",
+    "content": "{\n    \"serviceRequestId\":2,\n    \"workerId\":1\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"regnId\":1,\"date\":\"2017-01-28 10:59:57\"}",
+      "content": "{\"regnId\":2,\"date\":\"2017-02-14 11:28:16\"}",
       "success": true,
       "status": 200
     },
@@ -55,15 +55,15 @@
   },
   {
     "id": -455860766,
-    "name": "worker getServiceRequestDetail",
-    "url": "http://localhost:8080/Qlas-1.0/splus/worker/getServiceRequestDetail",
+    "name": "Worker Get Service Request Detail",
+    "url": "http://\u003c$URL$\u003e/splus/worker/getServiceRequestDetail",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n  \"serviceRequestId\": 1,\n  \"workerId\": 1\n}",
+    "content": "{\n  \"serviceRequestId\": 2,\n  \"workerId\": 1\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"workerId\":null,\"serviceRequestId\":null,\"serviceRequest\":{\"regnId\":\"1\",\"location\":null,\"localAddress\":\"first line second line\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"CLOSED\",\"date\":\"2017-01-23 21:00:00\",\"latitude\":12.12,\"longitude\":14.14,\"payment\":null},\"history\":[{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null}]}",
+      "content": "{\"message\":null,\"resultCode\":null,\"workerId\":null,\"serviceRequestId\":null,\"serviceRequest\":{\"regnId\":\"2\",\"image\":null,\"userName\":null,\"dept\":null,\"type\":\"ac\",\"typeId\":\"1\",\"firstName\":\"C2First\",\"middleName\":\"c2middle\",\"lastName\":\"c2Last\",\"title\":null,\"status\":\"STARTED\",\"date\":null,\"request\":\"my requ2s\",\"payment\":null,\"preferredTime\":null,\"address\":{\"firstLine\":\"my firstline\",\"secondLine\":\"my secondline\",\"city\":null,\"state\":null,\"country\":null,\"poBox\":null,\"primary\":null,\"active\":null,\"location\":null},\"location\":null,\"contactInfos\":[]},\"history\":[{\"action\":\"REGISTERED\",\"time\":null},{\"action\":\"ASSIGNED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null}]}",
       "success": true,
       "status": 200
     },
@@ -73,8 +73,8 @@
   },
   {
     "id": -453658033,
-    "name": "workClosed",
-    "url": "http://localhost:8080/Qlas-1.0/splus/worker/workClosed",
+    "name": "Close Work",
+    "url": "http://\u003c$URL$\u003e/splus/worker/workClosed",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
     "content": "{\n  \"serviceRequestId\": 1,\n  \"workerId\": 1,\n  \"payment\": {\n    \"amount\": 12.21,\n    \"currency\": \"QAR\"\n  }\n}",
@@ -85,15 +85,15 @@
   },
   {
     "id": -448906114,
-    "name": "USER getServices",
-    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getServices",
+    "name": "User Get Services",
+    "url": "http://\u003c$URL$\u003e/splus/customer/getServices",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
     "content": "{\n\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"services\":[{\"id\":1,\"name\":\"testservice\"}]}",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"services\":[{\"id\":1,\"name\":\"ac\"}]}",
       "success": true,
       "status": 200
     },
@@ -103,15 +103,15 @@
   },
   {
     "id": -448064787,
-    "name": "getServiceCompanies",
-    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getCompanies",
+    "name": "Get Service Companies",
+    "url": "http://\u003c$URL$\u003e/splus/customer/getCompanies",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
     "content": "{\n    \"serviceId\":1\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"companies\":[{\"companyName\":\"test\",\"companyId\":1}]}",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"companies\":[{\"companyName\":\"Ac company\",\"companyId\":1}]}",
       "success": true,
       "status": 200
     },
@@ -121,15 +121,15 @@
   },
   {
     "id": -441550896,
-    "name": "createServiceRequests",
-    "url": "http://localhost:8080/Qlas-1.0/splus/customer/createServiceRequests",
+    "name": "Create Service Requests",
+    "url": "http://\u003c$URL$\u003e/splus/customer/createServiceRequest",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n    \"serviceId\":1,\n    \"companyId\":1,\n     \"userId\":1,\n     \"latitude\":12.234,\n     \"longitude\":25.345,\n     \"localAddress\":{\n     \"firstLine\":\"my firstline\",\n     \"secondLine\":\"my secondline\"\n     }\n}",
+    "content": "{\n    \"serviceId\":1,\n    \"companyId\":1,\n     \"customerId\":1,\n\"request\":\"my requ2s\",\n     \"localAddress\":{\n     \"firstLine\":\"my firstline\",\n     \"secondLine\":\"my secondline\"\n     }\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceReqeustId\":8}",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceReqeustId\":2}",
       "success": true,
       "status": 200
     },
@@ -139,15 +139,15 @@
   },
   {
     "id": -438539503,
-    "name": "getServiceRequests",
-    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getServiceRequests",
+    "name": "Get Service Requests",
+    "url": "http://\u003c$URL$\u003e/splus/customer/getServiceRequests",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n    \"userId\":1\n}",
+    "content": "{\n    \"customerId\":1\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceRequests\":[{\"regnId\":\"5\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},{\"regnId\":\"6\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},{\"regnId\":\"7\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},{\"regnId\":\"8\",\"location\":null,\"localAddress\":\"my firstline my secondline\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null}]}",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceRequests\":[{\"regnId\":\"2\",\"image\":null,\"userName\":null,\"dept\":null,\"type\":\"ac\",\"typeId\":\"1\",\"firstName\":\"C2First\",\"middleName\":\"c2middle\",\"lastName\":\"c2Last\",\"title\":null,\"status\":\"REGISTERED\",\"date\":null,\"request\":\"my requ2s\",\"payment\":null,\"preferredTime\":null,\"address\":{\"firstLine\":\"my firstline\",\"secondLine\":\"my secondline\",\"city\":null,\"state\":null,\"country\":null,\"poBox\":null,\"primary\":null,\"active\":null,\"location\":null},\"location\":null,\"contactInfos\":[]}]}",
       "success": true,
       "status": 200
     },
@@ -157,26 +157,26 @@
   },
   {
     "id": -437765002,
-    "name": "getServiceRequests-copy",
-    "url": "http://localhost:8080/Qlas-1.0/splus/customer/getServiceRequestDetail",
+    "name": "Get Service Request Detail",
+    "url": "http://\u003c$URL$\u003e/splus/customer/getServiceRequestDetail",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
-    "content": "{\n    \"userId\":1,\n    \"serviceRequestId\":7\n}",
+    "content": "{\n    \"customerId\":1,\n    \"serviceRequestId\":2\n}",
     "contentType": "application/json",
     "output": {
       "contentType": "application/json;charset\u003dUTF-8",
-      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceRequest\":{\"regnId\":\"7\",\"location\":null,\"localAddress\":\"null null\",\"image\":null,\"userName\":null,\"fullName\":\"Philip george Panicker\",\"phoneNo\":\"1234123\",\"dept\":null,\"type\":\"testservice\",\"typeId\":\"1\",\"preferedTime\":null,\"comment\":null,\"status\":\"REGISTERED\",\"date\":null,\"latitude\":12.234,\"longitude\":25.345,\"payment\":null},\"history\":[{\"action\":\"REGISTERED\",\"time\":null}]}",
+      "content": "{\"message\":null,\"resultCode\":null,\"userId\":null,\"serviceRequest\":{\"regnId\":\"2\",\"image\":null,\"userName\":null,\"dept\":null,\"type\":\"ac\",\"typeId\":\"1\",\"firstName\":\"C2First\",\"middleName\":\"c2middle\",\"lastName\":\"c2Last\",\"title\":null,\"status\":\"COMPLETED\",\"date\":null,\"request\":\"my requ2s\",\"payment\":null,\"preferredTime\":null,\"address\":{\"firstLine\":\"my firstline\",\"secondLine\":\"my secondline\",\"city\":null,\"state\":null,\"country\":null,\"poBox\":null,\"primary\":null,\"active\":null,\"location\":null},\"location\":null,\"contactInfos\":[]},\"history\":[{\"action\":\"REGISTERED\",\"time\":null},{\"action\":\"ASSIGNED\",\"time\":null},{\"action\":\"STARTED\",\"time\":null},{\"action\":\"COMPLETED\",\"time\":null},{\"action\":\"COMPLETED\",\"time\":null},{\"action\":\"ASSIGNED\",\"time\":null},{\"action\":\"COMPLETED\",\"time\":null}]}",
       "success": true,
       "status": 200
     },
     "changed": false,
-    "selected": false,
+    "selected": true,
     "state": "done"
   },
   {
     "id": 970156353,
     "name": "Add New Service",
-    "url": "http://serveplus-philipgp.rhcloud.com/splus/admin/addNewService",
+    "url": "http://\u003c$URL$\u003e/splus/admin/addNewService",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
     "content": "{\n\"serviceName\":\"ac3\"\n}",
@@ -194,7 +194,7 @@
   {
     "id": 1003271654,
     "name": "Register Company",
-    "url": "http://serveplus-philipgp.rhcloud.com/splus/registration/registerCompany",
+    "url": "http://\u003c$URL$\u003e/splus/registration/registerCompany",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
     "content": "{\n\"name\":\"Ac company\"\n}",
@@ -212,13 +212,127 @@
   {
     "id": 1003416686,
     "name": "Add New Company Service",
-    "url": "http://serveplus-philipgp.rhcloud.com/splus/admin/addNewCompanyService",
+    "url": "http://\u003c$URL$\u003e/splus/admin/addNewCompanyService",
     "method": "POST",
     "headers": "Content-Type: application/json\n",
     "content": "{\n\"serviceId\":3,\n\"companyId\":1\n}",
     "contentType": "application/json",
-    "changed": true,
-    "selected": true,
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"status\":true}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1004998595,
+    "name": "Add New Worker",
+    "url": "http://\u003c$URL$\u003e/splus/admin/addNewWorker",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"companyId\":1,\n\"firstName\":\"W1First\",\n\"middleName\":\"W1middle\",\n\"lastName\":\"W2Last\",\n\"userName\":\"worker1us\",\n\"password\":\"worker1p\"\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"status\":true,\"workerId\":1}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1005923578,
+    "name": "Add New Worker Service",
+    "url": "http://\u003c$URL$\u003e/splus/admin/addNewWorkerService",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"workerId\":1,\n\"serviceId\":1,\n\"companyId\":1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"status\":true}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1006698080,
+    "name": "Add New Customer",
+    "url": "http://\u003c$URL$\u003e/splus/registration/registerCustomer",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"firstName\":\"C2First\",\n\"middleName\":\"c2middle\",\n\"lastName\":\"c2Last\",\n\"userName\":\"customer2us\",\n\"password\":\"customer2p\"\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"status\":true,\"workerId\":2}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1010987510,
+    "name": "Add New Admin",
+    "url": "http://\u003c$URL$\u003e/splus/admin/addNewAdmin",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"firstName\":\"Ad1First\",\n\"middleName\":\"Ad1Middle\",\n\"lastName\":\"Ad1Last\",\n\"userName\":\"ad1user\",\n\"companyId\":1,\n\"password\":\"ad1pass\"\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"status\":true,\"adminId\":1}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1011079498,
+    "name": "Get Works to Assign",
+    "url": "http://\u003c$URL$\u003e/splus/assigner/getWorksToAssign",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"assignerId\":1,\n\"companyId\":1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"works\":[{\"serviceRequestId\":2,\"assignerId\":null,\"workerId\":null,\"companyId\":1,\"serviceId\":1,\"requestSummary\":\"my requ2s\",\"location\":null,\"contactInfos\":[],\"addresses\":{\"firstLine\":\"my firstline\",\"secondLine\":\"my secondline\",\"city\":null,\"state\":null,\"country\":null,\"poBox\":null,\"primary\":null,\"active\":null,\"location\":null},\"customerId\":1,\"status\":\"REGISTERED\"}]}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1011157137,
+    "name": "Assign Work",
+    "url": "http://\u003c$URL$\u003e/splus/assigner/assignWork",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"assignerId\":1,\n\"serviceRequestId\":2,\n\"workerId\":1\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"status\":true}",
+      "success": true,
+      "status": 200
+    },
+    "changed": false,
+    "selected": false,
     "state": "done"
   }
 ]

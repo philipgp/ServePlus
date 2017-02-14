@@ -28,6 +28,7 @@ import com.serveplus.data.entity.Service;
 import com.serveplus.data.entity.ServiceRatingQuestion;
 import com.serveplus.data.entity.ServiceRequest;
 import com.serveplus.data.entity.ServiceRequestRatingFeedback;
+import com.serveplus.data.entity.UserContact;
 import com.serveplus.mapper.ServiceRequestMapper;
 import com.serveplus.mapper.UpdateServiceRequestMapper;
 import com.serveplus.service.CustomerService;
@@ -232,15 +233,18 @@ public class CustomerServiceImpl implements CustomerService{
 		
 		customerDao.save(customer);
 		
+		UserContact primaryEmail = customer.getUser().getPrimaryEmail();
+		if(primaryEmail!=null) {
 		MailVO mailVO = new MailVO();
 		mailVO.setFrom("vineeth5march1990@gmail.com");
 		mailVO.setTemplateFile("registration_code.vm"); 
 		mailVO.setSubject("ServePlus Registration");
-		mailVO.setTo("ppanickar@qatarairways.com.qa");
+		mailVO.setTo(primaryEmail.getContactDetail().getValue());
 		HashMap<String,Object> map = new HashMap<String, Object>();
 		map.put("otp",loginCredentials.getRegnOtpId().getCode());
 		mailVO.setMap(map);
 		servePlusMailService.sendMail(mailVO);
+		}
 		CustomerResponseMapper responseMapper = new CustomerResponseMapper();
 		CustomerRegisterResponse response = responseMapper.mapFrom(customer);
 		return response;

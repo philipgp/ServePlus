@@ -10,7 +10,7 @@ public class SrActionHistoryMapper implements Mapper<SrActionHistory,SrActionHis
 	public SrActionHistoryVO mapFrom(SrActionHistory source) {
 		SrActionHistoryVO actionHistoryVO = new SrActionHistoryVO();
 		actionHistoryVO.setAction(source.getAction());
-		actionHistoryVO.setTime(source.getCreatedDate());
+		//actionHistoryVO.setTime(source.getCreatedDate());
 		return actionHistoryVO;
 	}
 

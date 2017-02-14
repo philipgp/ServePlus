@@ -3,7 +3,7 @@ ID number auto_increment primary key,
 code varchar2(10),
 expiry_date timestamp);
 
-create table login_credentials(
+create table LOGIN_CREDENTIALS(
 id number auto_increment primary key,
 regn_otp_id number references Otp(id),
 password_reset_otp number references Otp(id),
@@ -14,10 +14,10 @@ account_status varchar2(15))
 ;
 
 
-create table login_session(
-id number auto_increment primary key,
-login_credential_id number references login_credentials(id),
-channel varchar2(10),
+create table LOGIN_SESSION(
+id INT auto_increment primary key,
+login_credential_id INT references login_credentials(id),
+channel varchar(10),
 last_login_time date,
 last_active_time date,
 token varchar2(30));
@@ -36,7 +36,7 @@ LAST_MODIFIED_DATE DATE
 
 
 
-create table customer(
+create table CUSTOMER(
  ID INT auto_INCREMENT PRIMARY KEY,
   USER_ID INT REFERENCES USER(ID),
   ACTIVE BOOLEAN,

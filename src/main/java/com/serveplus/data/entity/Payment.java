@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PAYMENT")
-public class Payment extends EntityBase{
+public class Payment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")

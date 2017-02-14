@@ -187,8 +187,8 @@
       "success": true,
       "status": 404
     },
-    "changed": true,
-    "selected": true,
+    "changed": false,
+    "selected": false,
     "state": "failed"
   },
   {
@@ -201,6 +201,24 @@
     "contentType": "application/json",
     "changed": false,
     "selected": false,
+    "state": "done"
+  },
+  {
+    "id": 1007625839,
+    "name": "Register Customer",
+    "url": "http://localhost:8080/serveplus/splus/registration/registerCustomer",
+    "method": "POST",
+    "headers": "Content-Type: application/json\n",
+    "content": "{\n\"firstName\":\"C5First\",\n\"middleName\":\"c5middle\",\n\"lastName\":\"cLast\",\n\"userName\":\"customer5us\",\n\"password\":\"customer5p\",\n\"contactInfos\":[\n{\n    \"type\":\"EMAIL\",\n    \"value\":\"philipgp@outlook.com\",\n    \"isDefault\":true,\n    \"isActive\":true\n    \n}\n]\n}",
+    "contentType": "application/json",
+    "output": {
+      "contentType": "application/json;charset\u003dUTF-8",
+      "content": "{\"message\":null,\"resultCode\":null,\"customerId\":6}",
+      "success": true,
+      "status": 200
+    },
+    "changed": true,
+    "selected": true,
     "state": "done"
   }
 ]

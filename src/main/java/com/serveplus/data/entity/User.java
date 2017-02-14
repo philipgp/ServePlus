@@ -25,8 +25,7 @@ import com.serveplus.data.dao.EntityBaseEventListener;
 
 @Entity
 @Table(name = "USER")
-@EntityListeners(EntityBaseEventListener.class)
-public class User  extends EntityBase{
+public class User{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name = "ID")

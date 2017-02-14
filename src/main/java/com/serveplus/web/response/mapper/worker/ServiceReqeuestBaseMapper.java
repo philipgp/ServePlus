@@ -48,7 +48,7 @@ public class ServiceReqeuestBaseMapper {
 			prefferedTime.setPrefferedTime(serviceRequest.getPreferredTime());
 			workVO.setPreferredTime(prefferedTime);
 		}
-		workVO.setDate(serviceRequest.getCreatedDate());
+		//workVO.setDate(serviceRequest.getCreatedDate());
 		if(serviceRequest.getStatus()!=null)
 			workVO.setStatus(serviceRequest.getStatus().toString());
 		if(customer!=null){
